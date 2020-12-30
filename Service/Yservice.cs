@@ -8,5 +8,6 @@ namespace Service
 {
     class Yservice
     {
+        string a;
     }
 }
