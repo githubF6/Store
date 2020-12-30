@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="warehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zsName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bs">
+          <Key>
+            <PropertyRef Name="bsID" />
+          </Key>
+          <Property Name="bsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="BsType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ck">
+          <Key>
+            <PropertyRef Name="ckID" />
+          </Key>
+          <Property Name="ckID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CkType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ckclient" Type="int" Nullable="false" />
+          <Property Name="Sum" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="clientID" />
+          </Key>
+          <Property Name="clientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clientName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dtable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KwID" Type="int" Nullable="false" />
+          <Property Name="kwName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CkID" Type="int" Nullable="false" />
+          <Property Name="KwTypeID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="measure">
+          <Key>
+            <PropertyRef Name="measureID" />
+          </Key>
+          <Property Name="measureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="measureName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Productprice" Type="float" Nullable="false" />
+          <Property Name="ProductSpercification" Type="varchar" MaxLength="50" />
+          <Property Name="ProductType" Type="int" Nullable="false" />
+          <Property Name="ProductUnit" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rk">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rkType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rkSupplier" Type="int" Nullable="false" />
+          <Property Name="Sum" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="storage1">
+          <Key>
+            <PropertyRef Name="KwID" />
+          </Key>
+          <Property Name="KwID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kwName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="storageType">
+          <Key>
+            <PropertyRef Name="KwTypeID" />
+          </Key>
+          <Property Name="KwTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KwTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="CkID" />
+          </Key>
+          <Property Name="CkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CkName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplierID" />
+          </Key>
+          <Property Name="supplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplierType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplierName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplier_contact" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remark" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="th">
+          <Key>
+            <PropertyRef Name="thID" />
+          </Key>
+          <Property Name="thID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="thType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="ckid" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Remark" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="yk">
+          <Key>
+            <PropertyRef Name="ykID" />
+          </Key>
+          <Property Name="ykID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ykType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Rkid" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_admin_AdminStatus">
+          <End Role="AdminStatus" Type="Self.AdminStatus" Multiplicity="1" />
+          <End Role="admin" Type="Self.admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="bs" Type="Self.bs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="bs">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ck_client">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="ck" Type="Self.ck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="clientID" />
+            </Principal>
+            <Dependent Role="ck">
+              <PropertyRef Name="Ckclient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dtable_storage1">
+          <End Role="storage1" Type="Self.storage1" Multiplicity="1" />
+          <End Role="Dtable" Type="Self.Dtable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storage1">
+              <PropertyRef Name="KwID" />
+            </Principal>
+            <Dependent Role="Dtable">
+              <PropertyRef Name="KwID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dtable_storageType">
+          <End Role="storageType" Type="Self.storageType" Multiplicity="1" />
+          <End Role="Dtable" Type="Self.Dtable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storageType">
+              <PropertyRef Name="KwTypeID" />
+            </Principal>
+            <Dependent Role="Dtable">
+              <PropertyRef Name="KwTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dtable_store">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="Dtable" Type="Self.Dtable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="CkID" />
+            </Principal>
+            <Dependent Role="Dtable">
+              <PropertyRef Name="CkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_measure">
+          <End Role="measure" Type="Self.measure" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measure">
+              <PropertyRef Name="measureID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ProductUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ProductType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rk_supplier">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="rk" Type="Self.rk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="rk">
+              <PropertyRef Name="rkSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_th_ck">
+          <End Role="ck" Type="Self.ck" Multiplicity="1" />
+          <End Role="th" Type="Self.th" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ck">
+              <PropertyRef Name="ckID" />
+            </Principal>
+            <Dependent Role="th">
+              <PropertyRef Name="ckid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="warehouseModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminStatus" EntityType="Self.AdminStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs" EntityType="Self.bs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ck" EntityType="Self.ck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dtable" EntityType="Self.Dtable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="measure" EntityType="Self.measure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rk" EntityType="Self.rk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="storage1" EntityType="Self.storage1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="storageType" EntityType="Self.storageType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="store" EntityType="Self.store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="th" EntityType="Self.th" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yk" EntityType="Self.yk" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_admin_AdminStatus" Association="Self.FK_admin_AdminStatus">
+            <End Role="AdminStatus" EntitySet="AdminStatus" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_product" Association="Self.FK_bs_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="bs" EntitySet="bs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ck_client" Association="Self.FK_ck_client">
+            <End Role="client" EntitySet="client" />
+            <End Role="ck" EntitySet="ck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dtable_storage1" Association="Self.FK_Dtable_storage1">
+            <End Role="storage1" EntitySet="storage1" />
+            <End Role="Dtable" EntitySet="Dtable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dtable_storageType" Association="Self.FK_Dtable_storageType">
+            <End Role="storageType" EntitySet="storageType" />
+            <End Role="Dtable" EntitySet="Dtable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dtable_store" Association="Self.FK_Dtable_store">
+            <End Role="store" EntitySet="store" />
+            <End Role="Dtable" EntitySet="Dtable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_measure" Association="Self.FK_product_measure">
+            <End Role="measure" EntitySet="measure" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_Type" Association="Self.FK_product_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rk_supplier" Association="Self.FK_rk_supplier">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="rk" EntitySet="rk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_th_ck" Association="Self.FK_th_ck">
+            <End Role="ck" EntitySet="ck" />
+            <End Role="th" EntitySet="th" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="warehouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zsName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdminStatus" Relationship="Self.FK_admin_AdminStatus" FromRole="admin" ToRole="AdminStatus" />
+        </EntityType>
+        <EntityType Name="AdminStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_admin_AdminStatus" FromRole="AdminStatus" ToRole="admin" />
+        </EntityType>
+        <EntityType Name="bs">
+          <Key>
+            <PropertyRef Name="bsID" />
+          </Key>
+          <Property Name="bsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="BsType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_bs_product" FromRole="bs" ToRole="product" />
+        </EntityType>
+        <EntityType Name="ck">
+          <Key>
+            <PropertyRef Name="ckID" />
+          </Key>
+          <Property Name="ckID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CkType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ckclient" Type="Int32" Nullable="false" />
+          <Property Name="Sum" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="client" Relationship="Self.FK_ck_client" FromRole="ck" ToRole="client" />
+          <NavigationProperty Name="th" Relationship="Self.FK_th_ck" FromRole="ck" ToRole="th" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="clientID" />
+          </Key>
+          <Property Name="clientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ck" Relationship="Self.FK_ck_client" FromRole="client" ToRole="ck" />
+        </EntityType>
+        <EntityType Name="Dtable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KwID" Type="Int32" Nullable="false" />
+          <Property Name="kwName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CkID" Type="Int32" Nullable="false" />
+          <Property Name="KwTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="storage1" Relationship="Self.FK_Dtable_storage1" FromRole="Dtable" ToRole="storage1" />
+          <NavigationProperty Name="storageType" Relationship="Self.FK_Dtable_storageType" FromRole="Dtable" ToRole="storageType" />
+          <NavigationProperty Name="store" Relationship="Self.FK_Dtable_store" FromRole="Dtable" ToRole="store" />
+        </EntityType>
+        <EntityType Name="measure">
+          <Key>
+            <PropertyRef Name="measureID" />
+          </Key>
+          <Property Name="measureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="measureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_measure" FromRole="measure" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Productprice" Type="Double" Nullable="false" />
+          <Property Name="ProductSpercification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType" Type="Int32" Nullable="false" />
+          <Property Name="ProductUnit" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bs" Relationship="Self.FK_bs_product" FromRole="product" ToRole="bs" />
+          <NavigationProperty Name="measure" Relationship="Self.FK_product_measure" FromRole="product" ToRole="measure" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_product_Type" FromRole="product" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="rk">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rkType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rkSupplier" Type="Int32" Nullable="false" />
+          <Property Name="Sum" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="supplier" Relationship="Self.FK_rk_supplier" FromRole="rk" ToRole="supplier" />
+        </EntityType>
+        <EntityType Name="storage1">
+          <Key>
+            <PropertyRef Name="KwID" />
+          </Key>
+          <Property Name="KwID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kwName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dtable" Relationship="Self.FK_Dtable_storage1" FromRole="storage1" ToRole="Dtable" />
+        </EntityType>
+        <EntityType Name="storageType">
+          <Key>
+            <PropertyRef Name="KwTypeID" />
+          </Key>
+          <Property Name="KwTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KwTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dtable" Relationship="Self.FK_Dtable_storageType" FromRole="storageType" ToRole="Dtable" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="CkID" />
+          </Key>
+          <Property Name="CkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CkName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dtable" Relationship="Self.FK_Dtable_store" FromRole="store" ToRole="Dtable" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplierID" />
+          </Key>
+          <Property Name="supplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplierType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="supplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="supplier_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="rk" Relationship="Self.FK_rk_supplier" FromRole="supplier" ToRole="rk" />
+        </EntityType>
+        <EntityType Name="th">
+          <Key>
+            <PropertyRef Name="thID" />
+          </Key>
+          <Property Name="thID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="thType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ckid" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ck" Relationship="Self.FK_th_ck" FromRole="th" ToRole="ck" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_Type" FromRole="Type" ToRole="product" />
+        </EntityType>
+        <EntityType Name="yk">
+          <Key>
+            <PropertyRef Name="ykID" />
+          </Key>
+          <Property Name="ykID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ykType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Rkid" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_admin_AdminStatus">
+          <End Role="AdminStatus" Type="Self.AdminStatus" Multiplicity="1" />
+          <End Role="admin" Type="Self.admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="bs" Type="Self.bs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="bs">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ck_client">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="ck" Type="Self.ck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="clientID" />
+            </Principal>
+            <Dependent Role="ck">
+              <PropertyRef Name="Ckclient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_th_ck">
+          <End Role="ck" Type="Self.ck" Multiplicity="1" />
+          <End Role="th" Type="Self.th" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ck">
+              <PropertyRef Name="ckID" />
+            </Principal>
+            <Dependent Role="th">
+              <PropertyRef Name="ckid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dtable_storage1">
+          <End Role="storage1" Type="Self.storage1" Multiplicity="1" />
+          <End Role="Dtable" Type="Self.Dtable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storage1">
+              <PropertyRef Name="KwID" />
+            </Principal>
+            <Dependent Role="Dtable">
+              <PropertyRef Name="KwID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dtable_storageType">
+          <End Role="storageType" Type="Self.storageType" Multiplicity="1" />
+          <End Role="Dtable" Type="Self.Dtable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storageType">
+              <PropertyRef Name="KwTypeID" />
+            </Principal>
+            <Dependent Role="Dtable">
+              <PropertyRef Name="KwTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dtable_store">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="Dtable" Type="Self.Dtable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="CkID" />
+            </Principal>
+            <Dependent Role="Dtable">
+              <PropertyRef Name="CkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_measure">
+          <End Role="measure" Type="Self.measure" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measure">
+              <PropertyRef Name="measureID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ProductUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ProductType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rk_supplier">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="rk" Type="Self.rk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="rk">
+              <PropertyRef Name="rkSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="warehouseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin" EntityType="Self.admin" />
+          <EntitySet Name="AdminStatus" EntityType="Self.AdminStatus" />
+          <EntitySet Name="bs" EntityType="Self.bs" />
+          <EntitySet Name="ck" EntityType="Self.ck" />
+          <EntitySet Name="client" EntityType="Self.client" />
+          <EntitySet Name="Dtable" EntityType="Self.Dtable" />
+          <EntitySet Name="measure" EntityType="Self.measure" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="rk" EntityType="Self.rk" />
+          <EntitySet Name="storage1" EntityType="Self.storage1" />
+          <EntitySet Name="storageType" EntityType="Self.storageType" />
+          <EntitySet Name="store" EntityType="Self.store" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" />
+          <EntitySet Name="th" EntityType="Self.th" />
+          <EntitySet Name="Type" EntityType="Self.Type" />
+          <EntitySet Name="yk" EntityType="Self.yk" />
+          <AssociationSet Name="FK_admin_AdminStatus" Association="Self.FK_admin_AdminStatus">
+            <End Role="AdminStatus" EntitySet="AdminStatus" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_product" Association="Self.FK_bs_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="bs" EntitySet="bs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ck_client" Association="Self.FK_ck_client">
+            <End Role="client" EntitySet="client" />
+            <End Role="ck" EntitySet="ck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_th_ck" Association="Self.FK_th_ck">
+            <End Role="ck" EntitySet="ck" />
+            <End Role="th" EntitySet="th" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dtable_storage1" Association="Self.FK_Dtable_storage1">
+            <End Role="storage1" EntitySet="storage1" />
+            <End Role="Dtable" EntitySet="Dtable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dtable_storageType" Association="Self.FK_Dtable_storageType">
+            <End Role="storageType" EntitySet="storageType" />
+            <End Role="Dtable" EntitySet="Dtable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dtable_store" Association="Self.FK_Dtable_store">
+            <End Role="store" EntitySet="store" />
+            <End Role="Dtable" EntitySet="Dtable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_measure" Association="Self.FK_product_measure">
+            <End Role="measure" EntitySet="measure" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_Type" Association="Self.FK_product_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rk_supplier" Association="Self.FK_rk_supplier">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="rk" EntitySet="rk" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="warehouseModelStoreContainer" CdmEntityContainer="warehouseEntities">
+          <EntitySetMapping Name="admin">
+            <EntityTypeMapping TypeName="warehouseModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="zsName" ColumnName="zsName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminStatus">
+            <EntityTypeMapping TypeName="warehouseModel.AdminStatus">
+              <MappingFragment StoreEntitySet="AdminStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs">
+            <EntityTypeMapping TypeName="warehouseModel.bs">
+              <MappingFragment StoreEntitySet="bs">
+                <ScalarProperty Name="bsID" ColumnName="bsID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BsType" ColumnName="BsType" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="check1" ColumnName="check1" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ck">
+            <EntityTypeMapping TypeName="warehouseModel.ck">
+              <MappingFragment StoreEntitySet="ck">
+                <ScalarProperty Name="ckID" ColumnName="ckID" />
+                <ScalarProperty Name="CkType" ColumnName="CkType" />
+                <ScalarProperty Name="Ckclient" ColumnName="Ckclient" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="check1" ColumnName="check1" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="client">
+            <EntityTypeMapping TypeName="warehouseModel.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="clientID" ColumnName="clientID" />
+                <ScalarProperty Name="clientName" ColumnName="clientName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dtable">
+            <EntityTypeMapping TypeName="warehouseModel.Dtable">
+              <MappingFragment StoreEntitySet="Dtable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KwID" ColumnName="KwID" />
+                <ScalarProperty Name="kwName" ColumnName="kwName" />
+                <ScalarProperty Name="CkID" ColumnName="CkID" />
+                <ScalarProperty Name="KwTypeID" ColumnName="KwTypeID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="measure">
+            <EntityTypeMapping TypeName="warehouseModel.measure">
+              <MappingFragment StoreEntitySet="measure">
+                <ScalarProperty Name="measureID" ColumnName="measureID" />
+                <ScalarProperty Name="measureName" ColumnName="measureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="warehouseModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Productprice" ColumnName="Productprice" />
+                <ScalarProperty Name="ProductSpercification" ColumnName="ProductSpercification" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductUnit" ColumnName="ProductUnit" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rk">
+            <EntityTypeMapping TypeName="warehouseModel.rk">
+              <MappingFragment StoreEntitySet="rk">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="rkType" ColumnName="rkType" />
+                <ScalarProperty Name="rkSupplier" ColumnName="rkSupplier" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="check1" ColumnName="check1" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storage1">
+            <EntityTypeMapping TypeName="warehouseModel.storage1">
+              <MappingFragment StoreEntitySet="storage1">
+                <ScalarProperty Name="KwID" ColumnName="KwID" />
+                <ScalarProperty Name="kwName" ColumnName="kwName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storageType">
+            <EntityTypeMapping TypeName="warehouseModel.storageType">
+              <MappingFragment StoreEntitySet="storageType">
+                <ScalarProperty Name="KwTypeID" ColumnName="KwTypeID" />
+                <ScalarProperty Name="KwTypeName" ColumnName="KwTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="store">
+            <EntityTypeMapping TypeName="warehouseModel.store">
+              <MappingFragment StoreEntitySet="store">
+                <ScalarProperty Name="CkID" ColumnName="CkID" />
+                <ScalarProperty Name="CkName" ColumnName="CkName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier">
+            <EntityTypeMapping TypeName="warehouseModel.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+                <ScalarProperty Name="supplierType" ColumnName="supplierType" />
+                <ScalarProperty Name="supplierName" ColumnName="supplierName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="supplier_contact" ColumnName="supplier_contact" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="th">
+            <EntityTypeMapping TypeName="warehouseModel.th">
+              <MappingFragment StoreEntitySet="th">
+                <ScalarProperty Name="thID" ColumnName="thID" />
+                <ScalarProperty Name="thType" ColumnName="thType" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="check1" ColumnName="check1" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ckid" ColumnName="ckid" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type">
+            <EntityTypeMapping TypeName="warehouseModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yk">
+            <EntityTypeMapping TypeName="warehouseModel.yk">
+              <MappingFragment StoreEntitySet="yk">
+                <ScalarProperty Name="ykID" ColumnName="ykID" />
+                <ScalarProperty Name="ykType" ColumnName="ykType" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="check1" ColumnName="check1" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Rkid" ColumnName="Rkid" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
