@@ -33,5 +33,48 @@ namespace storage.Controllers
             }
             
         }
+        public PartialViewResult store_list() {
+
+            //库存清单
+            return PartialView();
+        }
+        public PartialViewResult product_sum()
+        {
+
+            //货品统计
+            return PartialView();
+        }
+        public PartialViewResult crk()
+        {
+
+            //出入库统计
+            return PartialView();
+        }
+        public PartialViewResult rk()
+        {
+
+            //入库报表
+            return PartialView();
+        }
+        public PartialViewResult ck()
+        {
+
+            //出库报表
+            return PartialView();
+        }
+        public PartialViewResult breakage_statement() {
+
+            //报损管理
+            return PartialView();
+        }
+
+        public PartialViewResult return_statement()
+        {
+
+            //退货管理
+            return PartialView();
+        }
+
+
     }
 }

@@ -63,6 +63,7 @@ namespace storage.Controllers
 
         public ActionResult inde()
         {
+            
             return View();
             
         }
