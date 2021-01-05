@@ -132,6 +132,9 @@
     <Compile Include="Controllers\GController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StorageController.cs" />
+    <Compile Include="Controllers\TController.cs" />
+    <Compile Include="Controllers\YController.cs" />
+    <Compile Include="Controllers\ZController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -818,11 +821,34 @@
     <Content Include="Scripts\layui\font\iconfont.ttf" />
     <Content Include="Scripts\layui\font\iconfont.woff" />
     <Content Include="Scripts\layui\font\iconfont.woff2" />
+    <Content Include="Views\Z\staff_management.cshtml" />
+    <Content Include="Views\Z\role_management.cshtml" />
+    <Content Include="Views\Z\divisional_management.cshtml" />
+    <Content Include="Views\Z\menu_management.cshtml" />
+    <Content Include="Views\Z\authority_management.cshtml" />
+    <Content Include="Views\Z\TAG_management.cshtml" />
+    <Content Include="Views\T\shipping_management.cshtml" />
+    <Content Include="Views\T\supplier_management.cshtml" />
+    <Content Include="Views\T\client_management.cshtml" />
+    <Content Include="Views\T\unit.cshtml" />
+    <Content Include="Views\T\productType.cshtml" />
+    <Content Include="Views\T\product_management.cshtml" />
+    <Content Include="Views\Y\delivery_management.cshtml" />
+    <Content Include="Views\Y\stock_management.cshtml" />
+    <Content Include="Views\Y\breakage_management.cshtml" />
+    <Content Include="Views\Y\shifting_management.cshtml" />
+    <Content Include="Views\Y\sales_management.cshtml" />
+    <Content Include="Views\G\crk.cshtml" />
+    <Content Include="Views\G\rk.cshtml" />
+    <Content Include="Views\G\return_statement.cshtml" />
+    <Content Include="Views\G\breakage_statement.cshtml" />
+    <Content Include="Views\G\ck.cshtml" />
+    <Content Include="Views\G\product_sum.cshtml" />
+    <Content Include="Views\G\store_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\G\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
