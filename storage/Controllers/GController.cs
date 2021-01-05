@@ -11,13 +11,13 @@ namespace storage.Controllers
 {
     public class GController : Controller
     {
-        // GET: G
+        // GET: Ghttps://github.com/githubF6/Store.git 
         public ActionResult Index()
         {
             return View();
-        }
+        }                                        
         public ActionResult GLogin(string username,string password) {
-
+                           
             var list = new Gservice().Login(username,password);
            
             if (list.Count > 0)
