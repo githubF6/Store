@@ -50,7 +50,6 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
@@ -128,12 +127,16 @@
     <Compile Include="Controllers\GController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StorageController.cs" />
+    <Compile Include="Controllers\ztyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\storage.dll" />
+    <Content Include="bin\storage.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -262,6 +265,7 @@
     <Content Include="Views\Storage\typography.cshtml" />
     <Content Include="Views\Storage\validation.cshtml" />
     <Content Include="Views\Storage\widgets.cshtml" />
+    <Content Include="Views\zty\Zyggl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
