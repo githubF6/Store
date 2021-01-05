@@ -64,6 +64,7 @@ namespace storage.Controllers
         public ActionResult inde()
         {
             return View();
+            
         }
         public ActionResult login()
         {
