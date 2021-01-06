@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Service;
 
 namespace storage.Controllers
 {
@@ -37,6 +38,15 @@ namespace storage.Controllers
         {
             //退货管理
             return PartialView();
+        }
+
+        public ActionResult  Count() 
+        {
+            return Json(Yservice.Count(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetRuKu(int page, int limit)
+        {
+            return Json(Yservice.GetRuKu(page, limit),JsonRequestBehavior.AllowGet);
         }
     }
 }

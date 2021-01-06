@@ -87,6 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PageList.cs" />
     <Compile Include="product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

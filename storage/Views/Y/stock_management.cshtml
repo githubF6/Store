@@ -1,1 +1,192 @@
-﻿<h1 style="color:red">此页面为入库管理分部视图</h1>
+﻿
+
+<link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+@*<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>*@
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+<script>
+
+
+
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            , url: '/Y/GetRuKu'
+            , title: '用户数据表'
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , cols: [[
+                {
+                    type: 'checkbox',
+                    fixed: 'left'
+                },
+                {
+                    field: 'ID',
+                    title: 'ID',
+                    fixed: 'left'
+                },
+                {
+                    field: 'rkType',
+                    title: '用户名',
+                    edit: 'text',
+                    templet: function (res) {
+                        console.log(res)
+                        return "<button>" + res.rkType + "</button>"
+                    }
+                },
+                {
+                    field: 'rkSupplier ',
+                    title: '邮箱',
+                    width: 150
+                    //edit: 'text',
+                    //templet: function (res) {
+                    //    console.log(res.ID)
+                    //    return '<em>' + res.email + '</em>'
+                    //}
+                },
+                {
+                    field: 'Sum',
+                    title: '性别',
+                    width: 80,
+                    edit: 'text',
+                   // sort: true
+                },
+                {
+                    field: 'Price',
+                    title: '城市',
+                    width: 100
+                },
+                {
+                    field: 'Check1',
+                    title: '签名'
+                },
+                {
+                    field: 'CreateUser',
+                    title: '积分',
+                    width: 80,
+                    //sort: true
+                },
+                {
+                    field: 'CreateTime',
+                    title: '时间',
+                    width: 200
+                },
+                {
+                    fixed: 'right',
+                    title: '操作',
+                    width: 150
+                }
+            ]]
+            , page: true,
+            parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                console.log(res)
+                return {
+                    "code": "0", //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": res.PageCount, //解析数据长度
+                    "data": res.DataList //解析数据列表
+                };
+            }
+        });
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：' + data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+    });
+
+
+
+    $(function () {
+        var pageIndex = 1;
+        var pageSize = 1;
+        var pageCount = 0;
+        var rows = 0;
+
+
+
+
+
+
+        //function time(op) {
+        //    var dd = new Date(parseInt(op.substr(6)));
+        //    return dd.toLocaleDateString();
+        //}
+
+        //function PageList(pindex, psize) {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Y/GetRuKu",
+        //        data: "{pageIndex:" + pindex + ",pageSize:" + psize + "}",
+        //        dataType: "json",
+        //        contentType: "application/json",
+        //        success: function (result) {
+        //            //alert(result);
+        //            //获取总页数
+        //            //pageCount = result.PageCount;
+        //            //console.log(result);
+        //            $("#tb1 tr").remove();
+        //            console.log(result)
+        //            //$.each(result, function (index, data) {
+        //            //    $("#tb1").append("<tr><td>" + data.ID + "</td><td>" + data.rkType + "</td><td>" + data.rkSupplier + "</td><td>" + data.Sum + "</td><td>" + data.Price + "</td><td>" + data.Check1 + "</td><td>" + data.CreateUser + "</td><td>" + time(data.CreateTime) + "</td><td>" + data.Sum + "</td></tr>");
+
+        //            //});
+        //        },
+        //        error: function (ex) {
+        //            alert(ex.responseText);
+        //        }
+        //    });
+        //}
+
+        //function Count() {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Y/Count",
+        //        data: "{}",
+        //        dataType: "json",
+        //        contentType: "application/json",
+        //        success: function (result) {
+
+        //        },
+        //        error: function (ex) {
+        //            alert(ex.responseText);
+        //        }
+        //    });
+        //}
+        //PageList(1, 2);
+    });
+</script>
