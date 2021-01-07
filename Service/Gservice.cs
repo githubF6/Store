@@ -8,11 +8,17 @@ using Model;
 
 namespace Service
 {
-    public class Gservice
+    public static class Gservice
     {
-        public List<admin> Login(string username, string password)
+       
+        public static List<admin> Login(string username, string password)
         {
             return new Gdao().Login(username, password);
+        }
+        public static IQueryable QueryUnit()
+        {
+
+            return Gdao.QueryUnit();
         }
     }
 }

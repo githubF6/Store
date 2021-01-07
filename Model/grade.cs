@@ -12,19 +12,10 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class admin
+    public partial class grade
     {
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string zsName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public System.DateTime CreateTime { get; set; }
-        public int Status { get; set; }
-        public int department { get; set; }
-    
-        public virtual AdminStatus AdminStatus { get; set; }
-        public virtual department department1 { get; set; }
+        public string gradeName { get; set; }
+        public int grade1 { get; set; }
     }
 }

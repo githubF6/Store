@@ -31,6 +31,10 @@
         <AssociationConnector Association="warehouseModel.FK_product_measure" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_product_Type" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_rk_supplier" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="warehouseModel.department" Width="1.5" PointX="4.75" PointY="14.5" />
+        <EntityTypeShape EntityType="warehouseModel.grade" Width="1.5" PointX="12.375" PointY="4.75" />
+        <EntityTypeShape EntityType="warehouseModel.menu" Width="1.5" PointX="12.375" PointY="7.75" />
+        <AssociationConnector Association="warehouseModel.FK_admin_department" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

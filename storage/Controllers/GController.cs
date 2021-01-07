@@ -19,8 +19,8 @@ namespace storage.Controllers
             return View();
         }                                        
         public ActionResult GLogin(string username,string password) {
-                           
-            var list = new Gservice().Login(username,password);
+
+            var list = Gservice.Login(username,password);
            
             if (list.Count > 0)
             {
@@ -73,6 +73,11 @@ namespace storage.Controllers
 
             //退货管理
             return PartialView();
+        }
+        public ActionResult queryUnit() {
+
+
+            return Json(Gservice.QueryUnit(),JsonRequestBehavior.AllowGet);
         }
 
 

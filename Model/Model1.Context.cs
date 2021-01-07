@@ -41,5 +41,8 @@ namespace Model
         public virtual DbSet<th> th { get; set; }
         public virtual DbSet<Type> Type { get; set; }
         public virtual DbSet<yk> yk { get; set; }
+        public virtual DbSet<department> department { get; set; }
+        public virtual DbSet<grade> grade { get; set; }
+        public virtual DbSet<menu> menu { get; set; }
     }
 }

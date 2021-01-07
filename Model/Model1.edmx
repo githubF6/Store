@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="warehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="warehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -15,6 +15,7 @@
           <Property Name="zsName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="department" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
@@ -24,6 +25,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="bs">
           <Key>
@@ -62,6 +65,15 @@
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="departmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Dtable">
           <Key>
             <PropertyRef Name="ID" />
@@ -74,12 +86,33 @@
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="grade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gradeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="grade" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="measure">
           <Key>
             <PropertyRef Name="measureID" />
           </Key>
           <Property Name="measureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="measureName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menuID" />
+          </Key>
+          <Property Name="menuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="menuName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="parentmenu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Style" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -188,6 +221,18 @@
             </Principal>
             <Dependent Role="admin">
               <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_admin_department">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="admin" Type="Self.admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="department" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -305,8 +350,11 @@
           <EntitySet Name="bs" EntityType="Self.bs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ck" EntityType="Self.ck" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dtable" EntityType="Self.Dtable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grade" EntityType="Self.grade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="measure" EntityType="Self.measure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rk" EntityType="Self.rk" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="storage1" EntityType="Self.storage1" Schema="dbo" store:Type="Tables" />
@@ -318,6 +366,10 @@
           <EntitySet Name="yk" EntityType="Self.yk" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_admin_AdminStatus" Association="Self.FK_admin_AdminStatus">
             <End Role="AdminStatus" EntitySet="AdminStatus" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_admin_department" Association="Self.FK_admin_department">
+            <End Role="department" EntitySet="department" />
             <End Role="admin" EntitySet="admin" />
           </AssociationSet>
           <AssociationSet Name="FK_bs_product" Association="Self.FK_bs_product">
@@ -357,8 +409,7 @@
             <End Role="th" EntitySet="th" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="warehouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -375,6 +426,8 @@
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AdminStatus" Relationship="Self.FK_admin_AdminStatus" FromRole="admin" ToRole="AdminStatus" />
+          <Property Name="department" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="department1" Relationship="warehouseModel.FK_admin_department" FromRole="admin" ToRole="department" />
         </EntityType>
         <EntityType Name="AdminStatus">
           <Key>
@@ -383,6 +436,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="admin" Relationship="Self.FK_admin_AdminStatus" FromRole="AdminStatus" ToRole="admin" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="bs">
           <Key>
@@ -733,7 +788,57 @@
             <End Role="supplier" EntitySet="supplier" />
             <End Role="rk" EntitySet="rk" />
           </AssociationSet>
+          <EntitySet Name="department" EntityType="warehouseModel.department" />
+          <EntitySet Name="grade" EntityType="warehouseModel.grade" />
+          <EntitySet Name="menu" EntityType="warehouseModel.menu" />
+          <AssociationSet Name="FK_admin_department" Association="warehouseModel.FK_admin_department">
+            <End Role="department" EntitySet="department" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_admin_department" FromRole="department" ToRole="admin" />
+        </EntityType>
+        <EntityType Name="grade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gradeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="grade1" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menuID" />
+          </Key>
+          <Property Name="menuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="menuName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentmenu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Style" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_admin_department">
+          <End Type="warehouseModel.department" Role="department" Multiplicity="1" />
+          <End Type="warehouseModel.admin" Role="admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -743,6 +848,7 @@
           <EntitySetMapping Name="admin">
             <EntityTypeMapping TypeName="warehouseModel.admin">
               <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="department" ColumnName="department" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -757,6 +863,8 @@
           <EntitySetMapping Name="AdminStatus">
             <EntityTypeMapping TypeName="warehouseModel.AdminStatus">
               <MappingFragment StoreEntitySet="AdminStatus">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -927,6 +1035,39 @@
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Rkid" ColumnName="Rkid" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department">
+            <EntityTypeMapping TypeName="warehouseModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grade">
+            <EntityTypeMapping TypeName="warehouseModel.grade">
+              <MappingFragment StoreEntitySet="grade">
+                <ScalarProperty Name="grade1" ColumnName="grade" />
+                <ScalarProperty Name="gradeName" ColumnName="gradeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="warehouseModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="parentmenu" ColumnName="parentmenu" />
+                <ScalarProperty Name="menuName" ColumnName="menuName" />
+                <ScalarProperty Name="menuID" ColumnName="menuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,1 +1,18 @@
-﻿<h1 style="color:red">此页面为计量单位分部视图</h1>
+﻿<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        $.ajax("/G/queryUnit", {
+            type: "post",
+            dataType: "json",
+            data: {
+
+            }, success(res) {
+                alert("我进入了res");
+                alert(res);
+            }, error(err) {
+                alert("我进入err");
+                alert(err.responseText);
+            }
+        });
+    });
+</script>

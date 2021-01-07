@@ -12,19 +12,15 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class admin
+    public partial class menu
     {
-        public int ID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string zsName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public string menuID { get; set; }
+        public string menuName { get; set; }
+        public string parentmenu { get; set; }
+        public string Type { get; set; }
+        public string Style { get; set; }
+        public int Sort { get; set; }
+        public string Path { get; set; }
         public System.DateTime CreateTime { get; set; }
-        public int Status { get; set; }
-        public int department { get; set; }
-    
-        public virtual AdminStatus AdminStatus { get; set; }
-        public virtual department department1 { get; set; }
     }
 }
