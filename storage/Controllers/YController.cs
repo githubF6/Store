@@ -47,10 +47,14 @@ namespace storage.Controllers
             
             return Json(Yservice.GetRuKu(page, limit,id,check),JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult RuDanHao(int id) 
         {
             Debug.Write("id"+id);
             return Json(Yservice.RuDanHao(id),JsonRequestBehavior.AllowGet);
         }
+
+
+        
     }
 }

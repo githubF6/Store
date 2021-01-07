@@ -29,20 +29,20 @@
         </div>
 
         <div class="row-fluid">
-            
-                <div class="control-group">
-                    <div class="controls controls-cus">
-                        <input type="hidden" id="txtReprtNum" name="txtReportNum" value="InOrderPrint" />
-                        <input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入入库单号" />&nbsp;&nbsp;
-                        时间&nbsp;<input id="txtBeginTime" name="txtBeginTime" type="text" class="input-medium" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-                        -<input id="txtEndTime" name="txtEndTime" type="text" class="input-medium" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />&nbsp;&nbsp;
-                        <a id="gritter-remove-all" class="btn btn-info" href="javascript:void(0)" ><i class="icon-search"></i>&nbsp;搜索</a>
-                        <div class="btn-group">
-                            <button id="btnHSearch" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">高级搜索 <span class="caret"></span></button>
-                        </div>
+
+            <div class="control-group">
+                <div class="controls controls-cus">
+                    <input type="hidden" id="txtReprtNum" name="txtReportNum" value="InOrderPrint" />
+                    <input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入入库单号" />&nbsp;&nbsp;
+                    时间&nbsp;<input id="txtBeginTime" name="txtBeginTime" type="text" class="input-medium" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                    -<input id="txtEndTime" name="txtEndTime" type="text" class="input-medium" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />&nbsp;&nbsp;
+                    <a id="gritter-remove-all" class="btn btn-info" href="javascript:void(0)"><i class="icon-search"></i>&nbsp;搜索</a>
+                    <div class="btn-group">
+                        <button id="btnHSearch" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">高级搜索 <span class="caret"></span></button>
                     </div>
                 </div>
-          
+            </div>
+
         </div>
 
         <div style=" transition: 1s !important;display:none;" id="a">
@@ -76,14 +76,14 @@
                                 </select>
                             </div>
                             <button type="button" class="layui-btn layui-btn-normal">百搭按钮</button>
-                         
+
                         </div>
 
                     </div>
                 </fieldset>
             </form>
         </div>
-        
+
 
         <table class="layui-hide" id="test" lay-filter="test"></table>
 
@@ -95,16 +95,19 @@
                 <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
             </div>
         </script>
-
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
 
         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
         <script src="~/Scripts/layui/layui.all.js"></script>
-  
+
         @*<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>*@
         <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
         <script>
 
-            layui.use(['table','jquery'], function () {
+            layui.use(['table', 'jquery'], function () {
                 var table = layui.table;
                 var $ = layui.jquery;
 
@@ -112,14 +115,13 @@
                     $("#a").toggle();
                 })
 
-                var tableIns=table.render({
+                var tableIns = table.render({
                     elem: '#test'
                     , url: '/Y/GetRuKu'
                     , title: '用户数据表'
                     , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                     , where: {
-                        id: "0",
-                        check:"",
+                        id:"0"
                     }
                     , cols: [[
                         {
@@ -184,7 +186,7 @@
                         {
                             fixed: 'right',
                             title: '操作',
-
+                            toolbar: '#barDemo', 
                             width: 150
                         }
                     ]]
@@ -203,7 +205,7 @@
                     tableIns.reload({
                         where: { //设定异步数据接口的额外参数，任意设
                             id: $("#txtOrderNum").val()
-                           
+
                             //…
                         }
                         , page: {
@@ -211,19 +213,7 @@
                         }
                     });
                 })
-                $(".btn").on("click", function () {
-                    
-                    tableIns.reload({
-                        where: { //设定异步数据接口的额外参数，任意设
-                            check: $(this).val()
-                           
-                            //…
-                        }
-                        , page: {
-                            curr: 1 //重新从第 1 页开始
-                        }
-                    });
-                });
+              
 
                 //头工具栏事件
                 table.on('toolbar(test)', function (obj) {
@@ -247,9 +237,30 @@
                             break;
                     };
                 });
+
+            
+            //监听行工具事件
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                //console.log(obj)
+                if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.prompt({
+                        formType: 2
+                        , value: data.email
+                    }, function (value, index) {
+                        obj.update({
+                            email: value
+                        });
+                        layer.close(index);
+                    });
+                }
             });
+                });
 
 
-
-        
         </script>

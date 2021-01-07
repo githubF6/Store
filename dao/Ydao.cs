@@ -16,7 +16,7 @@ namespace dao
         }
 
         /// <summary>
-        /// 分页
+        /// 入库分页
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
@@ -56,6 +56,34 @@ namespace dao
             }
             
             return obj=obj.Skip((pageIndex - 1) * pageSize).Take(pageSize) ;
+        }
+
+        /// <summary>
+        /// 出库分页
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public static IQueryable GetChuKu(int pageIndex, int pageSize)
+        {
+            warehouseEntities entities = new warehouseEntities();
+            PageList list = new PageList();
+
+            var obj = from p in entities.ck
+                          orderby p.ckID
+                      select new
+                      {
+                        ckID = p.ckID           ,
+                       CkType = p.CkType          ,
+                        Ckclient = p.Ckclient     ,
+                        Sum = p.Sum               ,
+                       Price = p.Price            ,
+                          check1 = p.check1       ,
+                       CreateUser = p.CreateUser  ,
+                       CreateTime = p.CreateTime  ,
+                     Status = p.Status            
+                      };
+            return obj = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>
