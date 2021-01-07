@@ -9,13 +9,25 @@ namespace dao
 {
     public class Gdao
     {
-        warehouseEntities entity = new warehouseEntities();
+       static warehouseEntities entity = new warehouseEntities();
         public List<admin> Login(string username,string password) {
 
             return entity.admin.Where(p => p.UserName == username && p.Password == password).ToList();
             //var obj = (
             //   from admin in entity.admin.Where(p => p.UserName == username && p.Password == password).Count()
             //    )
+        }
+        public static IQueryable QueryUnit()
+        {
+
+            var obj =
+                from u in entity.measure
+                select new
+                {
+                    measureID = u.measureID,
+                    measureName = u.measureName
+                };
+            return obj;
         }
     }
 }

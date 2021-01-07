@@ -12,16 +12,16 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminStatus
+    public partial class department
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdminStatus()
+        public department()
         {
             this.admin = new HashSet<admin>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int departmentID { get; set; }
+        public string departmentName { get; set; }
         public System.DateTime CreateTime { get; set; }
         public int IsDelete { get; set; }
     
