@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -40,13 +41,16 @@ namespace storage.Controllers
             return PartialView();
         }
 
-        public ActionResult  Count() 
+       
+        public ActionResult GetRuKu(int page, int limit,int id)
         {
-            return Json(Yservice.Count(), JsonRequestBehavior.AllowGet);
+            
+            return Json(Yservice. (page, limit,id),JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetRuKu(int page, int limit)
+        public ActionResult RuDanHao(int id) 
         {
-            return Json(Yservice.GetRuKu(page, limit),JsonRequestBehavior.AllowGet);
+            Debug.Write("id"+id);
+            return Json(Yservice.RuDanHao(id),JsonRequestBehavior.AllowGet);
         }
     }
 }
