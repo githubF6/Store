@@ -35,6 +35,7 @@
         <EntityTypeShape EntityType="warehouseModel.grade" Width="1.5" PointX="12.375" PointY="4.75" />
         <EntityTypeShape EntityType="warehouseModel.menu" Width="1.5" PointX="12.375" PointY="7.75" />
         <AssociationConnector Association="warehouseModel.FK_admin_department" />
+        <AssociationConnector Association="warehouseModel.FK_Type_admin" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

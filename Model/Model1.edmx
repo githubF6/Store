@@ -344,6 +344,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Type_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="Type" Type="Self.Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Type">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="warehouseModelStoreContainer">
           <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminStatus" EntityType="Self.AdminStatus" Schema="dbo" store:Type="Tables" />
@@ -408,6 +420,10 @@
             <End Role="ck" EntitySet="ck" />
             <End Role="th" EntitySet="th" />
           </AssociationSet>
+          <AssociationSet Name="FK_Type_admin" Association="Self.FK_Type_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="Type" EntitySet="Type" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -428,6 +444,7 @@
           <NavigationProperty Name="AdminStatus" Relationship="Self.FK_admin_AdminStatus" FromRole="admin" ToRole="AdminStatus" />
           <Property Name="department" Type="Int32" Nullable="false" />
           <NavigationProperty Name="department1" Relationship="warehouseModel.FK_admin_department" FromRole="admin" ToRole="department" />
+          <NavigationProperty Name="Type" Relationship="warehouseModel.FK_Type_admin" FromRole="admin" ToRole="Type" />
         </EntityType>
         <EntityType Name="AdminStatus">
           <Key>
@@ -597,6 +614,7 @@
           <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="product" Relationship="Self.FK_product_Type" FromRole="Type" ToRole="product" />
+          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_Type_admin" FromRole="Type" ToRole="admin" />
         </EntityType>
         <EntityType Name="yk">
           <Key>
@@ -795,6 +813,10 @@
             <End Role="department" EntitySet="department" />
             <End Role="admin" EntitySet="admin" />
           </AssociationSet>
+          <AssociationSet Name="FK_Type_admin" Association="warehouseModel.FK_Type_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="Type" EntitySet="Type" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="department">
           <Key>
@@ -836,6 +858,18 @@
             </Principal>
             <Dependent Role="admin">
               <PropertyRef Name="department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_admin">
+          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
+          <End Type="warehouseModel.Type" Role="Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Type">
+              <PropertyRef Name="CreateUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
