@@ -16,7 +16,7 @@ namespace dao
         }
 
         /// <summary>
-        /// 分页
+        /// 入库管理
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
@@ -46,16 +46,79 @@ namespace dao
             if (id != 0)
             {
                 Debug.WriteLine("sdsd" + id);
-                obj = obj.Where(p => p.ID == id).OrderBy(p => p.ID);
+                obj = obj.Where(p => p.ID == id);
 
             } else if (check!=""&&check!=null) {
-                obj = obj.Where(p => p.check1==check).OrderBy(p => p.ID);
+                obj = obj.Where(p => p.check1==check);
             }
             else if (id==0&&check=="") {
-                obj = obj.OrderBy(p => p.ID != 0&&p.check1!="");
+                
             }
             
-            return obj=obj.Skip((pageIndex - 1) * pageSize).Take(pageSize) ;
+            return obj=obj.OrderBy(p=>p.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize) ;
+        }
+
+        /// <summary>
+        /// 出库管理
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public static IQueryable GetChuKu(int pageIndex, int pageSize,int? id)
+        {
+            warehouseEntities entities = new warehouseEntities();
+            PageList list = new PageList();
+
+            var obj = from p in entities.ck
+                         
+                      select new
+                      {
+                        ckID = p.ckID           ,
+                       CkType = p.CkType          ,
+                        Ckclient = p.Ckclient     ,
+                        Sum = p.Sum               ,
+                       Price = p.Price            ,
+                          check1 = p.check1       ,
+                       CreateUser = p.CreateUser  ,
+                       CreateTime = p.CreateTime  ,
+                     Status = p.Status            
+                      };
+            if (id!=0) 
+            {
+                obj = obj.Where(p => p.ckID == id);
+            }
+            return obj = obj.OrderBy(p => p.ckID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+        /// <summary>
+        /// 报损管理
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public static IQueryable GetBaoSun(int pageIndex, int pageSize, int? id)
+        {
+            warehouseEntities entities = new warehouseEntities();
+            PageList list = new PageList();
+
+            var obj = from p in entities.bs
+                         
+                      select new
+                      {
+                          bsID = p.bsID,       
+                          BsType = p.BsType      ,
+                          ProductID = p.ProductID   ,
+                          Count = p.Count       ,
+                          check1 = p.check1       ,
+                          CreateUser = p.CreateUser  ,
+                          CreateTime = p.CreateTime  ,
+                          Status = p.Status
+
+                      };
+            if (id != 0)
+            {
+                obj = obj.Where(p => p.bsID == id);
+            }
+            return obj = obj.OrderBy(p => p.bsID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>
@@ -77,6 +140,7 @@ namespace dao
                 CreateUser = p.CreateUser,
                 CreateTime = p.CreateTime.ToString(),
             };
+
             return obj;
         }
     }
