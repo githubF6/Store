@@ -16,7 +16,7 @@
         <div class="clearfix margin-bottom-10">
             <div class="btn-group" id="btnStatusGroup">
                 <button class="btn disabled" value="0">所有</button>
-                <button class="btn" value="1">待审核</button>
+                <button class="btn" value="1" id="btn1">待审核</button>
                 <button class="btn" value="2">审核通过</button>
                 <button class="btn" value="3">审核失败</button>
             </div>
@@ -118,7 +118,8 @@
                     , title: '用户数据表'
                     , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                     , where: {
-                        id:"0"
+                        id: "0",
+                        check:"",
                     }
                     , cols: [[
                         {
@@ -134,10 +135,10 @@
                             field: 'rkType',
                             title: '入库单号',
                             edit: 'text',
-                            templet: function (res) {
-                                console.log(res)
-                                return "<button>" + res.rkType + "</button>"
-                            }
+                            //templet: function (res) {
+                            //    console.log(res)
+                            //    return "<button>" + res.rkType + "</button>"
+                            //}
                         },
                         {
                             field: 'rkSupplier ',
@@ -175,6 +176,10 @@
                             field: 'CreateTime',
                             title: '创建时间',
                             width: 200
+                            //templet: function (val) {
+                                
+                                
+                            //}
                         },
                         {
                             fixed: 'right',
@@ -206,7 +211,19 @@
                         }
                     });
                 })
-              
+                $(".btn").on("click", function () {
+                    
+                    tableIns.reload({
+                        where: { //设定异步数据接口的额外参数，任意设
+                            check: $(this).val()
+                           
+                            //…
+                        }
+                        , page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                });
 
                 //头工具栏事件
                 table.on('toolbar(test)', function (obj) {

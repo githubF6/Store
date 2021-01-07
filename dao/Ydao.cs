@@ -21,7 +21,7 @@ namespace dao
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static IQueryable GetRuKu(int pageIndex, int pageSize,int? id) 
+        public static IQueryable GetRuKu(int pageIndex, int pageSize,int? id,string check) 
         {
            
             warehouseEntities entities = new warehouseEntities();
@@ -40,17 +40,21 @@ namespace dao
                 check1= p.check1   ,
                 CreateUser= p.CreateUser  ,
                 CreateTime=  p.CreateTime.ToString() ,
+                
             };
-            
-            if (id!=0)
-            {
-                Debug.WriteLine("sdsd"+id);
-                obj = obj.Where(p => p.ID == id).OrderByDescending(p => p.ID);
 
+            if (id != 0)
+            {
+                Debug.WriteLine("sdsd" + id);
+                obj = obj.Where(p => p.ID == id).OrderBy(p => p.ID);
+
+            } else if (check!=""&&check!=null) {
+                obj = obj.Where(p => p.check1==check).OrderBy(p => p.ID);
             }
-            else {
-                obj = obj.OrderByDescending(p => p.ID!=0);
+            else if (id==0&&check=="") {
+                obj = obj.OrderBy(p => p.ID != 0&&p.check1!="");
             }
+            
             return obj=obj.Skip((pageIndex - 1) * pageSize).Take(pageSize) ;
         }
 
