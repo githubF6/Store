@@ -24,7 +24,7 @@ namespace storage.Controllers
            
             if (list.Count > 0)
             {
-                Session["Userid"] = list.ElementAt(0).UserName;
+                Session["Userid"] = list.ElementAt(0).zsName;
                 Session.Timeout = 5;
                 return Content("1");
             }

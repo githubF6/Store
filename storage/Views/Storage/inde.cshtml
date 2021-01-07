@@ -42,6 +42,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script src="~/js/metisMenu.min.js"></script>
     <script src="~/js/custom.js"></script>
     <link href="~/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Scripts/layui/css/layui.css"/>
     <!--//Metis Menu -->
     <style>
         #chartdiv {
@@ -235,7 +236,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="header-right">
 
-
+                    
                     <div class="profile_details">
                         <ul>
                             <li class="dropdown profile_details_drop">
@@ -300,7 +301,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 </body>
 </html>
 <script src="~/Scripts/jquery-3.4.1.js"></script>
-<script src="~/Scripts/layui/layui.js"></script>
+<script src="~/Scripts/layui/layui.all.js"></script>
 <script>
     $(function () {
 
@@ -308,7 +309,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             window.location.href = "/Storage/login";
         }
         $("body").on("click", ".exit", function () {
-
+            //layer.confirm("您确定要退出吗?", {
+            //    btn:["确定","取消"]
+            //}, function () {
+                    
+            //});
+            
             if (confirm("是否退出?")) {
                 @{Session["Userid"] = ""; }
                 history.go(0);
@@ -337,19 +343,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             $(".main-page").load("/Z/menu_management").show();
 
 
-        });
+        }); 
         $(".treeview-menu:eq(0)>li:eq(4)>a").click(function () {
             $(".main-page").load("/Z/authority_management").show();
 
 
         });
         $(".treeview-menu:eq(0)>li:eq(5)>a").click(function () {
+            
             $(".main-page").load("/Z/TAG_management").show();
 
 
         });
         //上面js代码为系统设置的分部视图子项按钮点击显示分部视图
         $(".treeview-menu:eq(1)>li:eq(0)>a").click(function () {
+            
+            
             $(".main-page").load("/T/shipping_management").show();
 
 
@@ -441,6 +450,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 
         });
-        
+        ////上面js代码为报表管理的分部视图子项按钮点击显示分部视图
     });
 </script>
