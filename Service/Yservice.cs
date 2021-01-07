@@ -20,11 +20,19 @@ namespace Service
             return list;
         }
 
-        public static PageList GetChuKu(int page, int limi) 
+        public static PageList GetChuKu(int page, int limi,int id) 
         {
             PageList list = new PageList();
             list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.GetChuKu(page, limi);
+            list.DataList = dao.Ydao.GetChuKu(page, limi,id);
+            return list;
+        }
+
+        public static PageList GetBaoSun(int page, int limi, int id)
+        {
+            PageList list = new PageList();
+            list.PageCount = dao.Ydao.Count();
+            list.DataList = dao.Ydao.GetBaoSun(page, limi,id);
             return list;
         }
 
