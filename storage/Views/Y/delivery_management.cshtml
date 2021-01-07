@@ -1,1 +1,130 @@
-﻿<h1 style="color:red">此页面为出库管理分部视图</h1>
+﻿
+<link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+@*<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>*@
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+<script>
+
+
+
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            , url: '/Y/GetChuKu'
+            , title: '用户数据表'
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , cols: [[
+                {
+                    type: 'checkbox',
+                    title:"12"
+                },
+                {
+                    field: 'ckID',
+                    title: '出库单号'
+                   
+                },
+                {
+                    field: 'CkType',
+                    title: '出库类型',
+                    edit: 'text',
+                    templet: function (res) {
+                        console.log(res)
+                        return "<button>" + res.rkType + "</button>"
+                    }
+                },
+                {
+                    field: 'Ckclient ',
+                    title: '客户编号',
+                   
+                    //edit: 'text',
+                    //templet: function (res) {
+                    //    console.log(res.ID)
+                    //    return '<em>' + res.email + '</em>'
+                    //}
+                },
+                {
+                    field: 'Sum',
+                    title: '货品总数',
+                 
+                    edit: 'text',
+                   // sort: true
+                },
+                {
+                    field: 'Price',
+                    title: '总金额',
+                    
+                },
+                {
+                    field: 'CreateUser',
+                    title: '制单人'
+                },
+                {
+                    field: 'CreateTime',
+                    title: '当前时间',
+                  
+                    //sort: true
+                },
+                {
+                    field: 'Status',
+                    title: '操作',
+                    
+                }
+            ]]
+            , page: true,
+            parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                console.log(res)
+                return {
+                    "code": "0", //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": res.PageCount, //解析数据长度
+                    "data": res.DataList //解析数据列表
+                };
+            }
+        });
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：' + data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+    });
+
+
+
+
+
+</script>

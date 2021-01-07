@@ -45,12 +45,21 @@ namespace storage.Controllers
         public ActionResult GetRuKu(int page, int limit,int id)
         {
             
-            return Json(Yservice. (page, limit,id),JsonRequestBehavior.AllowGet);
+            return Json(Yservice.GetRuKu(page, limit,id),JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetChuKu(int page, int limit) 
+        {
+            return Json(Yservice.GetChuKu(page, limit), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult RuDanHao(int id) 
         {
             Debug.Write("id"+id);
             return Json(Yservice.RuDanHao(id),JsonRequestBehavior.AllowGet);
         }
+
+
+        
     }
 }

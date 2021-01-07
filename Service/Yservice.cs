@@ -18,6 +18,14 @@ namespace Service
             return list;
         }
 
+        public static PageList GetChuKu(int page, int limi) 
+        {
+            PageList list = new PageList();
+            list.PageCount = dao.Ydao.Count();
+            list.DataList = dao.Ydao.GetChuKu(page, limi);
+            return list;
+        }
+
         public static IQueryable RuDanHao(int id) 
         {
             return dao.Ydao.RuDanHao(id);
