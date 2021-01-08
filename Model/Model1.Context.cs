@@ -30,8 +30,11 @@ namespace Model
         public virtual DbSet<bs> bs { get; set; }
         public virtual DbSet<ck> ck { get; set; }
         public virtual DbSet<client> client { get; set; }
+        public virtual DbSet<department> department { get; set; }
         public virtual DbSet<Dtable> Dtable { get; set; }
+        public virtual DbSet<grade> grade { get; set; }
         public virtual DbSet<measure> measure { get; set; }
+        public virtual DbSet<menu> menu { get; set; }
         public virtual DbSet<product> product { get; set; }
         public virtual DbSet<rk> rk { get; set; }
         public virtual DbSet<storage1> storage1 { get; set; }
@@ -41,9 +44,5 @@ namespace Model
         public virtual DbSet<th> th { get; set; }
         public virtual DbSet<Type> Type { get; set; }
         public virtual DbSet<yk> yk { get; set; }
-        public virtual DbSet<department> department { get; set; }
-        public virtual DbSet<grade> grade { get; set; }
-        public virtual DbSet<menu> menu { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

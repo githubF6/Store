@@ -64,7 +64,7 @@
       <Name>dao</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{74f86598-2515-4e6f-bddd-e6f6d31772a3}</Project>
+      <Project>{B3622189-8F99-4AD2-B919-247E486723A5}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>

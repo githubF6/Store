@@ -23,7 +23,8 @@ namespace Model
         public int ckid { get; set; }
         public int Status { get; set; }
     
-        public virtual ck ck { get; set; }
         public virtual admin admin { get; set; }
+        public virtual ck ck { get; set; }
+        public virtual ck ck1 { get; set; }
     }
 }

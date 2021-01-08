@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dao", "dao\dao.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{8A7DAD4C-AB8E-4270-BE0A-2DAB67FC24D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{74F86598-2515-4E6F-BDDD-E6F6D31772A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{B3622189-8F99-4AD2-B919-247E486723A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{8A7DAD4C-AB8E-4270-BE0A-2DAB67FC24D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A7DAD4C-AB8E-4270-BE0A-2DAB67FC24D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A7DAD4C-AB8E-4270-BE0A-2DAB67FC24D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74F86598-2515-4E6F-BDDD-E6F6D31772A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74F86598-2515-4E6F-BDDD-E6F6D31772A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74F86598-2515-4E6F-BDDD-E6F6D31772A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74F86598-2515-4E6F-BDDD-E6F6D31772A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3622189-8F99-4AD2-B919-247E486723A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3622189-8F99-4AD2-B919-247E486723A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3622189-8F99-4AD2-B919-247E486723A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3622189-8F99-4AD2-B919-247E486723A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

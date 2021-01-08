@@ -4,46 +4,47 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c798aa3fb4d3434aad6f698552206373" Name="Diagram1" ZoomLevel="27">
-        <EntityTypeShape EntityType="warehouseModel.admin" Width="1.5" PointX="7" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.AdminStatus" Width="1.5" PointX="4.75" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.bs" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.ck" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.client" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.Dtable" Width="1.5" PointX="5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.measure" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.rk" Width="1.5" PointX="10" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.storage1" Width="1.5" PointX="2.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.storageType" Width="1.5" PointX="2.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.store" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.supplier" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.th" Width="1.5" PointX="12.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.Type" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="warehouseModel.yk" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+      <Diagram DiagramId="7c4a3d5eb02e4dc693761143dbbdcf67" Name="Diagram1">
+        <EntityTypeShape EntityType="warehouseModel.admin" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.AdminStatus" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.bs" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.ck" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.client" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.department" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.Dtable" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.grade" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.measure" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.menu" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.product" Width="1.5" PointX="7.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.rk" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.storage1" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.storageType" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.store" Width="1.5" PointX="9.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.supplier" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.th" Width="1.5" PointX="10.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.Type" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="warehouseModel.yk" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="warehouseModel.FK_admin_AdminStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_admin_department" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_bs_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_bs_admin1" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_ck_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_rk_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_th_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_Type_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_yk_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_yk_admin1" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_bs_product" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_ck_client" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_th_ck" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_th_ck1" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_Dtable_storage1" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_Dtable_storageType" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_Dtable_store" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_product_measure" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_product_Type" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_rk_supplier" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="warehouseModel.department" Width="1.5" PointX="4.75" PointY="14.5" />
-        <EntityTypeShape EntityType="warehouseModel.grade" Width="1.5" PointX="12.375" PointY="4.75" />
-        <EntityTypeShape EntityType="warehouseModel.menu" Width="1.5" PointX="12.375" PointY="7.75" />
-        <AssociationConnector Association="warehouseModel.FK_admin_department" />
-        <AssociationConnector Association="warehouseModel.FK_Type_admin" />
-        <AssociationConnector Association="warehouseModel.FK_bs_admin" />
-        <AssociationConnector Association="warehouseModel.FK_bs_admin1" />
-        <AssociationConnector Association="warehouseModel.FK_ck_admin" />
-        <AssociationConnector Association="warehouseModel.FK_rk_admin" />
-        <AssociationConnector Association="warehouseModel.FK_th_admin" />
-        <AssociationConnector Association="warehouseModel.FK_yk_admin" />
-        <AssociationConnector Association="warehouseModel.FK_yk_admin1" />
-        <AssociationConnector Association="warehouseModel.FK_yk_rk" />
+        <AssociationConnector Association="warehouseModel.FK_yk_rk" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

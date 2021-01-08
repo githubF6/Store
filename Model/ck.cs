@@ -18,6 +18,7 @@ namespace Model
         public ck()
         {
             this.th = new HashSet<th>();
+            this.th1 = new HashSet<th>();
         }
     
         public int ckID { get; set; }
@@ -30,9 +31,11 @@ namespace Model
         public System.DateTime CreateTime { get; set; }
         public int Status { get; set; }
     
+        public virtual admin admin { get; set; }
         public virtual client client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<th> th { get; set; }
-        public virtual admin admin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<th> th1 { get; set; }
     }
 }

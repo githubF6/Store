@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="warehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="warehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -25,7 +25,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="IsDelete" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="bs">
@@ -38,7 +38,7 @@
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ck">
@@ -52,7 +52,7 @@
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="client">
@@ -62,7 +62,7 @@
           <Property Name="clientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="clientName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="department">
@@ -71,7 +71,7 @@
           </Key>
           <Property Name="departmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="departmentName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="IsDelete" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Dtable">
@@ -84,7 +84,7 @@
           <Property Name="CkID" Type="int" Nullable="false" />
           <Property Name="KwTypeID" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="grade">
           <Key>
@@ -112,7 +112,7 @@
           <Property Name="Style" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="Path" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -138,7 +138,7 @@
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="storage1">
@@ -176,16 +176,6 @@
           <Property Name="Remark" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="th">
           <Key>
             <PropertyRef Name="thID" />
@@ -195,7 +185,7 @@
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="ckid" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
@@ -206,7 +196,7 @@
           <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="Remark" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
@@ -219,7 +209,7 @@
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="check1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="Rkid" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
@@ -492,7 +482,6 @@
           <EntitySet Name="storageType" EntityType="Self.storageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="store" EntityType="Self.store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="th" EntityType="Self.th" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="yk" EntityType="Self.yk" Schema="dbo" store:Type="Tables" />
@@ -581,7 +570,8 @@
             <End Role="yk" EntitySet="yk" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="warehouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -595,19 +585,19 @@
           <Property Name="zsName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="department" Type="Int32" Nullable="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AdminStatus" Relationship="Self.FK_admin_AdminStatus" FromRole="admin" ToRole="AdminStatus" />
-          <Property Name="department" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="department1" Relationship="warehouseModel.FK_admin_department" FromRole="admin" ToRole="department" />
-          <NavigationProperty Name="Type" Relationship="warehouseModel.FK_Type_admin" FromRole="admin" ToRole="Type" />
-          <NavigationProperty Name="bs" Relationship="warehouseModel.FK_bs_admin" FromRole="admin" ToRole="bs" />
-          <NavigationProperty Name="bs1" Relationship="warehouseModel.FK_bs_admin1" FromRole="admin" ToRole="bs" />
-          <NavigationProperty Name="ck" Relationship="warehouseModel.FK_ck_admin" FromRole="admin" ToRole="ck" />
-          <NavigationProperty Name="rk" Relationship="warehouseModel.FK_rk_admin" FromRole="admin" ToRole="rk" />
-          <NavigationProperty Name="th" Relationship="warehouseModel.FK_th_admin" FromRole="admin" ToRole="th" />
-          <NavigationProperty Name="yk" Relationship="warehouseModel.FK_yk_admin" FromRole="admin" ToRole="yk" />
-          <NavigationProperty Name="yk1" Relationship="warehouseModel.FK_yk_admin1" FromRole="admin" ToRole="yk" />
+          <NavigationProperty Name="department1" Relationship="Self.FK_admin_department" FromRole="admin" ToRole="department" />
+          <NavigationProperty Name="bs" Relationship="Self.FK_bs_admin" FromRole="admin" ToRole="bs" />
+          <NavigationProperty Name="bs1" Relationship="Self.FK_bs_admin1" FromRole="admin" ToRole="bs" />
+          <NavigationProperty Name="ck" Relationship="Self.FK_ck_admin" FromRole="admin" ToRole="ck" />
+          <NavigationProperty Name="rk" Relationship="Self.FK_rk_admin" FromRole="admin" ToRole="rk" />
+          <NavigationProperty Name="th" Relationship="Self.FK_th_admin" FromRole="admin" ToRole="th" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Type_admin" FromRole="admin" ToRole="Type" />
+          <NavigationProperty Name="yk" Relationship="Self.FK_yk_admin" FromRole="admin" ToRole="yk" />
+          <NavigationProperty Name="yk1" Relationship="Self.FK_yk_admin1" FromRole="admin" ToRole="yk" />
         </EntityType>
         <EntityType Name="AdminStatus">
           <Key>
@@ -615,9 +605,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="admin" Relationship="Self.FK_admin_AdminStatus" FromRole="AdminStatus" ToRole="admin" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_admin_AdminStatus" FromRole="AdminStatus" ToRole="admin" />
         </EntityType>
         <EntityType Name="bs">
           <Key>
@@ -629,11 +619,11 @@
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_bs_admin" FromRole="bs" ToRole="admin" />
+          <NavigationProperty Name="admin1" Relationship="Self.FK_bs_admin1" FromRole="bs" ToRole="admin" />
           <NavigationProperty Name="product" Relationship="Self.FK_bs_product" FromRole="bs" ToRole="product" />
-          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_bs_admin" FromRole="bs" ToRole="admin" />
-          <NavigationProperty Name="admin1" Relationship="warehouseModel.FK_bs_admin1" FromRole="bs" ToRole="admin" />
         </EntityType>
         <EntityType Name="ck">
           <Key>
@@ -646,11 +636,12 @@
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_ck_admin" FromRole="ck" ToRole="admin" />
           <NavigationProperty Name="client" Relationship="Self.FK_ck_client" FromRole="ck" ToRole="client" />
           <NavigationProperty Name="th" Relationship="Self.FK_th_ck" FromRole="ck" ToRole="th" />
-          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_ck_admin" FromRole="ck" ToRole="admin" />
+          <NavigationProperty Name="th1" Relationship="Self.FK_th_ck1" FromRole="ck" ToRole="th" />
         </EntityType>
         <EntityType Name="client">
           <Key>
@@ -659,9 +650,19 @@
           <Property Name="clientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="clientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ck" Relationship="Self.FK_ck_client" FromRole="client" ToRole="ck" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_admin_department" FromRole="department" ToRole="admin" />
         </EntityType>
         <EntityType Name="Dtable">
           <Key>
@@ -673,10 +674,18 @@
           <Property Name="CkID" Type="Int32" Nullable="false" />
           <Property Name="KwTypeID" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="storage1" Relationship="Self.FK_Dtable_storage1" FromRole="Dtable" ToRole="storage1" />
           <NavigationProperty Name="storageType" Relationship="Self.FK_Dtable_storageType" FromRole="Dtable" ToRole="storageType" />
           <NavigationProperty Name="store" Relationship="Self.FK_Dtable_store" FromRole="Dtable" ToRole="store" />
+        </EntityType>
+        <EntityType Name="grade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grade1" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="measure">
           <Key>
@@ -685,6 +694,19 @@
           <Property Name="measureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="measureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="product" Relationship="Self.FK_product_measure" FromRole="measure" ToRole="product" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menuID" />
+          </Key>
+          <Property Name="menuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parentmenu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Style" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -713,11 +735,11 @@
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="supplier" Relationship="Self.FK_rk_supplier" FromRole="rk" ToRole="supplier" />
-          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_rk_admin" FromRole="rk" ToRole="admin" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="yk" Relationship="warehouseModel.FK_yk_rk" FromRole="rk" ToRole="yk" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_rk_admin" FromRole="rk" ToRole="admin" />
+          <NavigationProperty Name="supplier" Relationship="Self.FK_rk_supplier" FromRole="rk" ToRole="supplier" />
+          <NavigationProperty Name="yk" Relationship="Self.FK_yk_rk" FromRole="rk" ToRole="yk" />
         </EntityType>
         <EntityType Name="storage1">
           <Key>
@@ -767,11 +789,12 @@
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ckid" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_th_admin" FromRole="th" ToRole="admin" />
           <NavigationProperty Name="ck" Relationship="Self.FK_th_ck" FromRole="th" ToRole="ck" />
-          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_th_admin" FromRole="th" ToRole="admin" />
+          <NavigationProperty Name="ck1" Relationship="Self.FK_th_ck1" FromRole="th" ToRole="ck" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -780,11 +803,11 @@
           <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_Type_admin" FromRole="Type" ToRole="admin" />
           <NavigationProperty Name="product" Relationship="Self.FK_product_Type" FromRole="Type" ToRole="product" />
-          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_Type_admin" FromRole="Type" ToRole="admin" />
         </EntityType>
         <EntityType Name="yk">
           <Key>
@@ -795,12 +818,12 @@
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="check1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Rkid" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_yk_admin" FromRole="yk" ToRole="admin" />
-          <NavigationProperty Name="admin1" Relationship="warehouseModel.FK_yk_admin1" FromRole="yk" ToRole="admin" />
-          <NavigationProperty Name="rk" Relationship="warehouseModel.FK_yk_rk" FromRole="yk" ToRole="rk" />
+          <NavigationProperty Name="admin" Relationship="Self.FK_yk_admin" FromRole="yk" ToRole="admin" />
+          <NavigationProperty Name="admin1" Relationship="Self.FK_yk_admin1" FromRole="yk" ToRole="admin" />
+          <NavigationProperty Name="rk" Relationship="Self.FK_yk_rk" FromRole="yk" ToRole="rk" />
         </EntityType>
         <Association Name="FK_admin_AdminStatus">
           <End Role="AdminStatus" Type="Self.AdminStatus" Multiplicity="1" />
@@ -811,6 +834,114 @@
             </Principal>
             <Dependent Role="admin">
               <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_admin_department">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="admin" Type="Self.admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="bs" Type="Self.bs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bs">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_admin1">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="bs" Type="Self.bs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bs">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ck_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="ck" Type="Self.ck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ck">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rk_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="rk" Type="Self.rk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="rk">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_th_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="th" Type="Self.th" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="th">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="Type" Type="Self.Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Type">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yk_admin">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="yk" Type="Self.yk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="yk">
+              <PropertyRef Name="CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yk_admin1">
+          <End Role="admin" Type="Self.admin" Multiplicity="1" />
+          <End Role="yk" Type="Self.yk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="yk">
+              <PropertyRef Name="CreateUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -839,6 +970,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_th_ck">
+          <End Role="ck" Type="Self.ck" Multiplicity="1" />
+          <End Role="th" Type="Self.th" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ck">
+              <PropertyRef Name="ckID" />
+            </Principal>
+            <Dependent Role="th">
+              <PropertyRef Name="ckid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_th_ck1">
           <End Role="ck" Type="Self.ck" Multiplicity="1" />
           <End Role="th" Type="Self.th" Multiplicity="*" />
           <ReferentialConstraint>
@@ -922,14 +1065,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_yk_rk">
+          <End Role="rk" Type="Self.rk" Multiplicity="1" />
+          <End Role="yk" Type="Self.yk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rk">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="yk">
+              <PropertyRef Name="Rkid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="warehouseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="admin" EntityType="Self.admin" />
           <EntitySet Name="AdminStatus" EntityType="Self.AdminStatus" />
           <EntitySet Name="bs" EntityType="Self.bs" />
           <EntitySet Name="ck" EntityType="Self.ck" />
           <EntitySet Name="client" EntityType="Self.client" />
+          <EntitySet Name="department" EntityType="Self.department" />
           <EntitySet Name="Dtable" EntityType="Self.Dtable" />
+          <EntitySet Name="grade" EntityType="Self.grade" />
           <EntitySet Name="measure" EntityType="Self.measure" />
+          <EntitySet Name="menu" EntityType="Self.menu" />
           <EntitySet Name="product" EntityType="Self.product" />
           <EntitySet Name="rk" EntityType="Self.rk" />
           <EntitySet Name="storage1" EntityType="Self.storage1" />
@@ -943,6 +1101,42 @@
             <End Role="AdminStatus" EntitySet="AdminStatus" />
             <End Role="admin" EntitySet="admin" />
           </AssociationSet>
+          <AssociationSet Name="FK_admin_department" Association="Self.FK_admin_department">
+            <End Role="department" EntitySet="department" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_admin" Association="Self.FK_bs_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="bs" EntitySet="bs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_admin1" Association="Self.FK_bs_admin1">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="bs" EntitySet="bs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ck_admin" Association="Self.FK_ck_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="ck" EntitySet="ck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rk_admin" Association="Self.FK_rk_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="rk" EntitySet="rk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_th_admin" Association="Self.FK_th_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="th" EntitySet="th" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_admin" Association="Self.FK_Type_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="Type" EntitySet="Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yk_admin" Association="Self.FK_yk_admin">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="yk" EntitySet="yk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yk_admin1" Association="Self.FK_yk_admin1">
+            <End Role="admin" EntitySet="admin" />
+            <End Role="yk" EntitySet="yk" />
+          </AssociationSet>
           <AssociationSet Name="FK_bs_product" Association="Self.FK_bs_product">
             <End Role="product" EntitySet="product" />
             <End Role="bs" EntitySet="bs" />
@@ -952,6 +1146,10 @@
             <End Role="ck" EntitySet="ck" />
           </AssociationSet>
           <AssociationSet Name="FK_th_ck" Association="Self.FK_th_ck">
+            <End Role="ck" EntitySet="ck" />
+            <End Role="th" EntitySet="th" />
+          </AssociationSet>
+          <AssociationSet Name="FK_th_ck1" Association="Self.FK_th_ck1">
             <End Role="ck" EntitySet="ck" />
             <End Role="th" EntitySet="th" />
           </AssociationSet>
@@ -979,201 +1177,11 @@
             <End Role="supplier" EntitySet="supplier" />
             <End Role="rk" EntitySet="rk" />
           </AssociationSet>
-          <EntitySet Name="department" EntityType="warehouseModel.department" />
-          <EntitySet Name="grade" EntityType="warehouseModel.grade" />
-          <EntitySet Name="menu" EntityType="warehouseModel.menu" />
-          <AssociationSet Name="FK_admin_department" Association="warehouseModel.FK_admin_department">
-            <End Role="department" EntitySet="department" />
-            <End Role="admin" EntitySet="admin" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Type_admin" Association="warehouseModel.FK_Type_admin">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="Type" EntitySet="Type" />
-          </AssociationSet>
-          <AssociationSet Name="FK_bs_admin" Association="warehouseModel.FK_bs_admin">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="bs" EntitySet="bs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_bs_admin1" Association="warehouseModel.FK_bs_admin1">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="bs" EntitySet="bs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ck_admin" Association="warehouseModel.FK_ck_admin">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="ck" EntitySet="ck" />
-          </AssociationSet>
-          <AssociationSet Name="FK_rk_admin" Association="warehouseModel.FK_rk_admin">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="rk" EntitySet="rk" />
-          </AssociationSet>
-          <AssociationSet Name="FK_th_admin" Association="warehouseModel.FK_th_admin">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="th" EntitySet="th" />
-          </AssociationSet>
-          <AssociationSet Name="FK_yk_admin" Association="warehouseModel.FK_yk_admin">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="yk" EntitySet="yk" />
-          </AssociationSet>
-          <AssociationSet Name="FK_yk_admin1" Association="warehouseModel.FK_yk_admin1">
-            <End Role="admin" EntitySet="admin" />
-            <End Role="yk" EntitySet="yk" />
-          </AssociationSet>
-          <AssociationSet Name="FK_yk_rk" Association="warehouseModel.FK_yk_rk">
+          <AssociationSet Name="FK_yk_rk" Association="Self.FK_yk_rk">
             <End Role="rk" EntitySet="rk" />
             <End Role="yk" EntitySet="yk" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="department">
-          <Key>
-            <PropertyRef Name="departmentID" />
-          </Key>
-          <Property Name="departmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="departmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IsDelete" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="admin" Relationship="warehouseModel.FK_admin_department" FromRole="department" ToRole="admin" />
-        </EntityType>
-        <EntityType Name="grade">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="gradeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="grade1" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="menu">
-          <Key>
-            <PropertyRef Name="menuID" />
-          </Key>
-          <Property Name="menuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="menuName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="parentmenu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Style" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="Path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <Association Name="FK_admin_department">
-          <End Type="warehouseModel.department" Role="department" Multiplicity="1" />
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="admin">
-              <PropertyRef Name="department" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Type_admin">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.Type" Role="Type" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Type">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bs_admin">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.bs" Role="bs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bs">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bs_admin1">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.bs" Role="bs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bs">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ck_admin">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.ck" Role="ck" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ck">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_rk_admin">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.rk" Role="rk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="rk">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_th_admin">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.th" Role="th" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="th">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_yk_admin">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.yk" Role="yk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="yk">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_yk_admin1">
-          <End Type="warehouseModel.admin" Role="admin" Multiplicity="1" />
-          <End Type="warehouseModel.yk" Role="yk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="admin">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="yk">
-              <PropertyRef Name="CreateUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_yk_rk">
-          <End Type="warehouseModel.rk" Role="rk" Multiplicity="1" />
-          <End Type="warehouseModel.yk" Role="yk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="rk">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="yk">
-              <PropertyRef Name="Rkid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1183,13 +1191,13 @@
           <EntitySetMapping Name="admin">
             <EntityTypeMapping TypeName="warehouseModel.admin">
               <MappingFragment StoreEntitySet="admin">
-                <ScalarProperty Name="department" ColumnName="department" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="zsName" ColumnName="zsName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="department" ColumnName="department" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
@@ -1198,10 +1206,10 @@
           <EntitySetMapping Name="AdminStatus">
             <EntityTypeMapping TypeName="warehouseModel.AdminStatus">
               <MappingFragment StoreEntitySet="AdminStatus">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1245,6 +1253,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="department">
+            <EntityTypeMapping TypeName="warehouseModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+                <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Dtable">
             <EntityTypeMapping TypeName="warehouseModel.Dtable">
               <MappingFragment StoreEntitySet="Dtable">
@@ -1258,11 +1276,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="grade">
+            <EntityTypeMapping TypeName="warehouseModel.grade">
+              <MappingFragment StoreEntitySet="grade">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="gradeName" ColumnName="gradeName" />
+                <ScalarProperty Name="grade1" ColumnName="grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="measure">
             <EntityTypeMapping TypeName="warehouseModel.measure">
               <MappingFragment StoreEntitySet="measure">
                 <ScalarProperty Name="measureID" ColumnName="measureID" />
                 <ScalarProperty Name="measureName" ColumnName="measureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="warehouseModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="menuID" ColumnName="menuID" />
+                <ScalarProperty Name="menuName" ColumnName="menuName" />
+                <ScalarProperty Name="parentmenu" ColumnName="parentmenu" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1283,7 +1324,6 @@
           <EntitySetMapping Name="rk">
             <EntityTypeMapping TypeName="warehouseModel.rk">
               <MappingFragment StoreEntitySet="rk">
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="rkType" ColumnName="rkType" />
                 <ScalarProperty Name="rkSupplier" ColumnName="rkSupplier" />
@@ -1292,6 +1332,7 @@
                 <ScalarProperty Name="check1" ColumnName="check1" />
                 <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1371,39 +1412,6 @@
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Rkid" ColumnName="Rkid" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="department">
-            <EntityTypeMapping TypeName="warehouseModel.department">
-              <MappingFragment StoreEntitySet="department">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="departmentName" ColumnName="departmentName" />
-                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="grade">
-            <EntityTypeMapping TypeName="warehouseModel.grade">
-              <MappingFragment StoreEntitySet="grade">
-                <ScalarProperty Name="grade1" ColumnName="grade" />
-                <ScalarProperty Name="gradeName" ColumnName="gradeName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="menu">
-            <EntityTypeMapping TypeName="warehouseModel.menu">
-              <MappingFragment StoreEntitySet="menu">
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="Path" ColumnName="Path" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Style" ColumnName="Style" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="parentmenu" ColumnName="parentmenu" />
-                <ScalarProperty Name="menuName" ColumnName="menuName" />
-                <ScalarProperty Name="menuID" ColumnName="menuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

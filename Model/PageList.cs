@@ -8,7 +8,6 @@ namespace Model
 {
    public class PageList
     {
-
         /// <summary>
         /// 总页数
         /// </summary>
