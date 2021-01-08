@@ -8,11 +8,46 @@ using Model;
 
 namespace Service
 {
-    public class Gservice
+    public static class Gservice
     {
-        public List<admin> Login(string username, string password)
+       
+        public static List<admin> Login(string username, string password)
         {
             return new Gdao().Login(username, password);
+        }
+        public static PageList queryUnit(int page, int limit, int measureID, string measureName)
+        {
+            PageList list = new PageList();
+            list.PageCount = Gdao.count();
+            list.DataList = Gdao.QueryUnit(page, limit,measureID,measureName);
+            return list;
+        }
+        public static PageList QueryType(int pageIndex, int pageSize, int typeId, string typeName)
+        {
+            PageList page = new PageList();
+            page.PageCount = Gdao.count();
+            page.DataList = Gdao.QueryType(pageIndex,pageSize,typeId,typeName);
+            return page;
+        }
+        public static PageList Queryproduct(int page, int limit, int ProductID, string ProductName) {
+            PageList list = new PageList();
+            list.PageCount = Gdao.count();
+            list.DataList = Gdao.Queryproduct(page, limit,ProductID,  ProductName);
+            return list;
+        }
+        public static PageList QueryDtable(int page, int limit, string KwName)
+        {
+            PageList list = new PageList();
+            list.PageCount = Gdao.count();
+            list.DataList = Gdao.QueryDtable(page, limit,KwName);
+            return list;
+        }
+        public static PageList Queryclient(int page, int limit, int clientID, string clientName)
+        {
+            PageList list = new PageList();
+            list.PageCount = Gdao.count();
+            list.DataList = Gdao.Queryclient(page, limit,clientID,clientName);
+            return list;
         }
     }
 }

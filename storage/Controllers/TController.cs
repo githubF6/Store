@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Model;
+using Service;
 
 namespace storage.Controllers
 {
@@ -31,6 +34,7 @@ namespace storage.Controllers
         public PartialViewResult unit()
         {
             //计量单位
+           
             return PartialView();
         }
         public PartialViewResult productType()

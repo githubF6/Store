@@ -17,21 +17,21 @@ namespace storage.Controllers
         public ActionResult Index()
         {
             return View();
-        }                                        
-        public ActionResult GLogin(string username,string password) {
-                           
-            var list = new Gservice().Login(username,password);
-           
+        }
+        public ActionResult GLogin(string username, string password) {
+
+            var list = Gservice.Login(username, password);
+
             if (list.Count > 0)
             {
-                Session["Userid"] = list.ElementAt(0).UserName;
+                Session["Userid"] = list.ElementAt(0).zsName;
                 Session.Timeout = 5;
                 return Content("1");
             }
             else {
                 return Content("2");
             }
-            
+
         }
         public PartialViewResult store_list() {
 
@@ -74,7 +74,28 @@ namespace storage.Controllers
             //退货管理
             return PartialView();
         }
+        public ActionResult queryUnit(int page, int limit, int measureID, string measureName) {
 
+
+            return Json(Gservice.queryUnit(page, limit, measureID, measureName), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult QueryType(int page, int limit, int typeId, string typeName)
+        {
+
+
+            return Json(Gservice.QueryType(page, limit, typeId, typeName), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Queryproduct(int page, int limit, int ProductID, string ProductName) {
+            return Json(Gservice.Queryproduct(page,limit,ProductID,ProductName),JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult QueryDtable(int page, int limit, string KwName)
+        {
+            return Json(Gservice.QueryDtable(page, limit,KwName), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Queryclient(int page, int limit, int clientID, string clientName)
+        {
+            return Json(Gservice.Queryclient(page, limit,clientID,clientName), JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
