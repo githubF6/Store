@@ -44,5 +44,6 @@ namespace Model
         public virtual DbSet<department> department { get; set; }
         public virtual DbSet<grade> grade { get; set; }
         public virtual DbSet<menu> menu { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

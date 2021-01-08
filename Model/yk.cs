@@ -22,5 +22,9 @@ namespace Model
         public System.DateTime CreateTime { get; set; }
         public int Rkid { get; set; }
         public int Status { get; set; }
+    
+        public virtual admin admin { get; set; }
+        public virtual admin admin1 { get; set; }
+        public virtual rk rk { get; set; }
     }
 }

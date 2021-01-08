@@ -12,18 +12,12 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class th
+    public partial class sysdiagrams
     {
-        public int thID { get; set; }
-        public string thType { get; set; }
-        public int Count { get; set; }
-        public string check1 { get; set; }
-        public int CreateUser { get; set; }
-        public System.DateTime CreateTime { get; set; }
-        public int ckid { get; set; }
-        public int Status { get; set; }
-    
-        public virtual ck ck { get; set; }
-        public virtual admin admin { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

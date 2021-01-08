@@ -33,5 +33,6 @@ namespace Model
         public virtual client client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<th> th { get; set; }
+        public virtual admin admin { get; set; }
     }
 }

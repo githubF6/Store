@@ -18,6 +18,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!-- Bootstrap Core CSS -->
     <link href="~/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
+
+    <script src="~/Scripts/layui/layui.all.js" charset="utf-8"></script>
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" type="text/css" />
+
     <!-- Custom CSS -->
     <link href="~/css/style.css" rel='stylesheet' type='text/css' />
 
@@ -98,15 +102,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <link href="~/css/owl.carousel.css" rel="stylesheet">
     <script src="~/js/owl.carousel.js"></script>
     <script>
-							$(document).ready(function() {
-								$("#owl-demo").owlCarousel({
-									items : 3,
-									lazyLoad : true,
-									autoPlay : true,
-									pagination : true,
-									nav:true,
-								});
-							});
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                autoPlay: true,
+                pagination: true,
+                nav: true,
+            });
+        });
     </script>
     <!-- //requried-jsfiles-for owl -->
 </head>
@@ -274,6 +278,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                </div>
             </div>
             <button id="test"></button>
+            </div>
+        </div>
             <script src="~/js/Chart.bundle.js"></script>
             <script src="~/js/utils.js"></script>
 
@@ -304,58 +310,54 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script src="~/Scripts/layui/layui.all.js"></script>
 <script src="~/Scripts/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 <script>
-    $(function () {
-
-        if ($("#SessionId").html() == "") {
+        $(function () {
+            var aa = sessionStorage["Userid"];
+            $("#SessionId").html(aa);
+        if ( aa == null || aa=="") {
             window.location.href = "/Storage/login";
         }
         $("body").on("click", ".exit", function () {
-            //layer.confirm("您确定要退出吗?", {
-            //    btn:["确定","取消"]
-            //}, function () {
-                    
-            //});
-            
-            if (confirm("是否退出?")) {
-                @{Session["Userid"] = ""; }
-                history.go(0);
-            }
-        });
+
+            layer.confirm("真的要退出吗？", function () {
+                    sessionStorage["Userid"] = "";
+                    history.go(0);
+            });
+            });
 
         //在下面打js代码每人设置的变量、名称前面加上自己名字的首字母
         $(".treeview-menu:eq(0)>li:eq(0)>a").click(function () {
             $(".main-page").load("/Z/staff_management").show();
-            
-            
-        });
+
+
+            });
         $(".treeview-menu:eq(0)>li:eq(1)>a").click(function () {
             $(".main-page").load("/Z/role_management").show();
 
 
-        });
+            });
 
         $(".treeview-menu:eq(0)>li:eq(2)>a").click(function () {
             $(".main-page").load("/Z/divisional_management").show();
 
 
-        });
+            });
 
         $(".treeview-menu:eq(0)>li:eq(3)>a").click(function () {
             $(".main-page").load("/Z/menu_management").show();
 
 
-        }); 
+            });
         $(".treeview-menu:eq(0)>li:eq(4)>a").click(function () {
             $(".main-page").load("/Z/authority_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(0)>li:eq(5)>a").click(function () {
             
             $(".main-page").load("/Z/TAG_management").show();
 
 
-        });
+            });
         //上面js代码为系统设置的分部视图子项按钮点击显示分部视图
         $(".treeview-menu:eq(1)>li:eq(0)>a").click(function () {
             
@@ -363,94 +365,94 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             $(".main-page").load("/T/shipping_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(1)>li:eq(1)>a").click(function () {
             $(".main-page").load("/T/supplier_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(1)>li:eq(2)>a").click(function () {
             $(".main-page").load("/T/client_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(1)>li:eq(3)>a").click(function () {
             $(".main-page").load("/T/unit").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(1)>li:eq(4)>a").click(function () {
             $(".main-page").load("/T/productType").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(1)>li:eq(5)>a").click(function () {
             $(".main-page").load("/T/product_management").show();
 
 
-        });
+            });
         //上面js代码为基本资料的分部视图子项按钮点击显示分部视图
         $(".treeview-menu:eq(2)>li:eq(0)>a").click(function () {
             $(".main-page").load("/Y/stock_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(2)>li:eq(1)>a").click(function () {
             $(".main-page").load("/Y/delivery_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(2)>li:eq(2)>a").click(function () {
             $(".main-page").load("/Y/breakage_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(2)>li:eq(3)>a").click(function () {
             $(".main-page").load("/Y/shifting_management").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(2)>li:eq(4)>a").click(function () {
             $(".main-page").load("/Y/sales_management").show();
 
 
-        });
+            });
          //上面js代码为仓库作业的分部视图子项按钮点击显示分部视图
         $(".treeview-menu:eq(3)>li:eq(0)>a").click(function () {
             $(".main-page").load("/G/store_list").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(3)>li:eq(1)>a").click(function () {
             $(".main-page").load("/G/product_sum").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(3)>li:eq(2)>a").click(function () {
             $(".main-page").load("/G/crk").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(3)>li:eq(3)>a").click(function () {
             $(".main-page").load("/G/rk").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(3)>li:eq(4)>a").click(function () {
             $(".main-page").load("/G/ck").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(3)>li:eq(5)>a").click(function () {
             $(".main-page").load("/G/breakage_statement").show();
 
 
-        });
+            });
         $(".treeview-menu:eq(3)>li:eq(6)>a").click(function () {
             $(".main-page").load("/G/return_statement").show();
 
 
-        });
-        ////上面js代码为报表管理的分部视图子项按钮点击显示分部视图
+            });
+
     });
 </script>

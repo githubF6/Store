@@ -24,5 +24,7 @@ namespace Model
         public int Status { get; set; }
     
         public virtual product product { get; set; }
+        public virtual admin admin { get; set; }
+        public virtual admin admin1 { get; set; }
     }
 }

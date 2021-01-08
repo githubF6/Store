@@ -20,25 +20,38 @@ namespace Service
             return list;
         }
 
-        public static PageList GetChuKu(int page, int limi,int id) 
+        public static PageList GetChuKu(int page, int limi,int id,string check) 
         {
             PageList list = new PageList();
             list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.GetChuKu(page, limi,id);
+            list.DataList = dao.Ydao.GetChuKu(page, limi,id,check);
             return list;
         }
 
-        public static PageList GetBaoSun(int page, int limi, int id)
+        public static PageList GetBaoSun(int page, int limi, int id,string check)
         {
             PageList list = new PageList();
             list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.GetBaoSun(page, limi,id);
+            list.DataList = dao.Ydao.GetBaoSun(page, limi,id,check);
             return list;
         }
 
         public static IQueryable RuDanHao(int id) 
         {
             return dao.Ydao.RuDanHao(id);
+        }
+        public static PageList Queryyk(int page, int limi, int id, string check) {
+            PageList list = new PageList();
+            list.PageCount = dao.Ydao.Count();
+            list.DataList = dao.Ydao.Queryyk(page, limi, id, check);
+            return list;
+        }
+        public static PageList Queryth(int page, int limi, int id, string check)
+        {
+            PageList list = new PageList();
+            list.PageCount = dao.Ydao.Count();
+            list.DataList = dao.Ydao.Queryth(page, limi, id, check);
+            return list;
         }
     }
 }

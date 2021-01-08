@@ -121,7 +121,8 @@
                     , title: '用户数据表'
                     , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                     , where: {
-                        id:"0"
+                        id: "0",
+                        check:""
                     }
                     , cols: [[
                         {
@@ -143,8 +144,8 @@
                             //}
                         },
                         {
-                            field: 'ProductID ',
-                            title: '对应产品表id',
+                            field: 'ProductName',
+                            title: '报损物品',
                             width: 150
                             //edit: 'text',
                             //templet: function (res) {
@@ -160,13 +161,20 @@
                             // sort: true
                         },
                         {
-                            field: 'CreateUser',
+                            field: 'check1',
+                            title: '是否通过审核',
+                            width: 80,
+                            edit: 'text',
+                            // sort: true
+                        },
+                        {
+                            field: 'UserName',
                             title: '制单人',
                             width: 100
                         },
                         {
                             field: 'CreateTime',
-                            title: '当前时间'
+                            title: '操作时间'
                         },
                         
                      
@@ -191,16 +199,27 @@
                 $("#gritter-remove-all").click(function () {
                     tableIns.reload({
                         where: { //设定异步数据接口的额外参数，任意设
-                            id: $("#txtOrderNum").val()
-
+                            id: $("#txtOrderNum").val(),
+                            check: ""
                             //…
                         }
                         , page: {
                             curr: 1 //重新从第 1 页开始
                         }
                     });
-                })
+                });
+                $(".btn").on("click",function () {
+                    tableIns.reload({
+                        where: { //设定异步数据接口的额外参数，任意设
 
+                            check: $(this).val()
+                            //…
+                        }
+                        , page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                });
 
                 //头工具栏事件
                 table.on('toolbar(test)', function (obj) {
