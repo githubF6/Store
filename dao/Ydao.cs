@@ -40,7 +40,8 @@ namespace dao
                 check1= p.check1   ,
                 CreateUser= p.CreateUser  ,
                 CreateTime=  p.CreateTime.ToString() ,
-                
+                supplierName= p.supplier.supplierName,
+
             };
 
             if (id != 0)
@@ -112,6 +113,7 @@ namespace dao
                           CreateUser = p.CreateUser  ,
                           CreateTime = p.CreateTime  ,
                           Status = p.Status
+                          
 
                       };
             if (id != 0)
