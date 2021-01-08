@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c798aa3fb4d3434aad6f698552206373" Name="Diagram1">
+      <Diagram DiagramId="c798aa3fb4d3434aad6f698552206373" Name="Diagram1" ZoomLevel="27">
         <EntityTypeShape EntityType="warehouseModel.admin" Width="1.5" PointX="7" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="warehouseModel.AdminStatus" Width="1.5" PointX="4.75" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="warehouseModel.bs" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
@@ -31,6 +31,11 @@
         <AssociationConnector Association="warehouseModel.FK_product_measure" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_product_Type" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_rk_supplier" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="warehouseModel.department" Width="1.5" PointX="4.75" PointY="14.5" />
+        <EntityTypeShape EntityType="warehouseModel.grade" Width="1.5" PointX="12.375" PointY="4.75" />
+        <EntityTypeShape EntityType="warehouseModel.menu" Width="1.5" PointX="12.375" PointY="7.75" />
+        <EntityTypeShape EntityType="warehouseModel.sysdiagrams" Width="1.5" PointX="12.375" PointY="11.75" />
+        <AssociationConnector Association="warehouseModel.FK_admin_department" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
