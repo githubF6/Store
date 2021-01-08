@@ -49,5 +49,12 @@ namespace Service
             list.DataList = Gdao.Queryclient(page, limit,clientID,clientName);
             return list;
         }
+        public static PageList Querysupplier(int page, int limit, int supplierID, string supplierName, string supplierType)
+        {
+            PageList list = new PageList();
+            list.PageCount = Gdao.count();
+            list.DataList = Gdao.Querysupplier(page, limit,supplierID,supplierName,supplierType);
+            return list;
+        }
     }
 }

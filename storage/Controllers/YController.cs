@@ -47,14 +47,14 @@ namespace storage.Controllers
             
             return Json(Yservice.GetRuKu(page, limit,id,check),JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetChuKu(int page, int limit,int id) 
+        public ActionResult GetChuKu(int page, int limit,int id,string check) 
         {
-            return Json(Yservice.GetChuKu(page, limit,id), JsonRequestBehavior.AllowGet);
+            return Json(Yservice.GetChuKu(page, limit,id,check), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetBaoSun(int page, int limit, int id) 
+        public ActionResult GetBaoSun(int page, int limit, int id,string check) 
         {
-            return Json(Yservice.GetBaoSun(page, limit,id), JsonRequestBehavior.AllowGet);
+            return Json(Yservice.GetBaoSun(page, limit,id,check), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult RuDanHao(int id) 
@@ -62,8 +62,15 @@ namespace storage.Controllers
             Debug.Write("id"+id);
             return Json(Yservice.RuDanHao(id),JsonRequestBehavior.AllowGet);
         }
-
-
+        public ActionResult Queryyk(int page, int limit, int id, string check)
+        {
+            return Json(Yservice.Queryyk(page, limit, id, check), JsonRequestBehavior.AllowGet);
+        }
         
+        public ActionResult Queryth(int page, int limit, int id, string check)
+        {
+            return Json(Yservice.Queryth(page, limit, id, check), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

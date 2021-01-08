@@ -121,7 +121,8 @@
                     , title: '用户数据表'
                     , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                     , where: {
-                        id:"0"
+                        id: "0",
+                        check:""
                     }
                     , cols: [[
                         {
@@ -130,12 +131,12 @@
                         },
                         {
                             field: 'ID',
-                            title: 'ID',
+                            title: '序号',
                             fixed: 'left'
                         },
                         {
                             field: 'rkType',
-                            title: '入库单号',
+                            title: '入库类型',
                             edit: 'text',
                             //templet: function (res) {
                             //    console.log(res)
@@ -143,8 +144,8 @@
                             //}
                         },
                         {
-                            field: 'rkSupplier ',
-                            title: '入库类型',
+                            field: 'supplierName',
+                            title: '供应商',
                             width: 150
                             //edit: 'text',
                             //templet: function (res) {
@@ -165,8 +166,10 @@
                             width: 100
                         },
                         {
-                            field: 'Check1',
-                            title: '签名'
+                            field: 'check1',
+                            title: '是否通过审核',
+                            width: 80,
+                            edit: 'text',
                         },
                         {
                             field: 'CreateUser',
@@ -213,7 +216,19 @@
                         }
                     });
                 })
-              
+                $(".btn").on("click", function () {
+                    tableIns.reload({
+                        where: { //设定异步数据接口的额外参数，任意设
+                            
+                            check: $(this).val()
+
+                            //…
+                        }
+                        , page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                });
 
                 //头工具栏事件
                 table.on('toolbar(test)', function (obj) {

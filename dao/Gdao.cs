@@ -117,5 +117,26 @@ namespace dao
             }
             return obj.OrderBy(p => p.clientID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
+        public static IQueryable Querysupplier(int pageIndex, int pageSize,int supplierID,string supplierName, string supplierType) {
+            PageList page = new PageList();
+            var obj =
+                from s in entity.supplier
+                select new
+                {
+                    supplierID= s.supplierID,
+                    supplierType=s.supplierType,
+                    supplierName= s.supplierName,
+                    Phone= s.Phone,
+                    Email=s.Email,
+                    supplier_contact=s.supplier_contact,
+                    Address= s.Address,
+                    Remark=s.Remark,
+                    
+                };
+            if (supplierID!=0||supplierName!=""||supplierType!="") {
+                obj = obj.Where(p =>p.supplierID==supplierID||p.supplierName==supplierName||p.supplierType==supplierType);
+            }
+            return obj.OrderBy(p => p.supplierID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
     }
 }

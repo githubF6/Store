@@ -96,6 +96,11 @@ namespace storage.Controllers
         {
             return Json(Gservice.Queryclient(page, limit,clientID,clientName), JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Querysupplier(int page, int limit, int supplierID, string supplierName, string supplierType)
+        {
+            return Json(Gservice.Querysupplier(page, limit,supplierID,supplierName,supplierType), JsonRequestBehavior.AllowGet);
+        }
+        
 
     }
 }

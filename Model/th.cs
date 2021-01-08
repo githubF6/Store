@@ -24,5 +24,6 @@ namespace Model
         public int Status { get; set; }
     
         public virtual ck ck { get; set; }
+        public virtual admin admin { get; set; }
     }
 }

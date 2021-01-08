@@ -305,9 +305,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script src="~/Scripts/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 <script>
     $(function () {
-
+        
         if ($("#SessionId").html() == "") {
-            //window.location.href = "/Storage/login";
+            window.location.href = "/Storage/login";
         }
         $("body").on("click", ".exit", function () {
             //layer.confirm("您确定要退出吗?", {
@@ -321,7 +321,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 history.go(0);
             }
         });
-
+        
         //在下面打js代码每人设置的变量、名称前面加上自己名字的首字母
         $(".treeview-menu:eq(0)>li:eq(0)>a").click(function () {
             $(".main-page").load("/Z/staff_management").show();

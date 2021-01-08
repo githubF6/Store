@@ -14,6 +14,12 @@ namespace Model
     
     public partial class rk
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public rk()
+        {
+            this.yk = new HashSet<yk>();
+        }
+    
         public int ID { get; set; }
         public string rkType { get; set; }
         public int rkSupplier { get; set; }
@@ -22,7 +28,11 @@ namespace Model
         public string check1 { get; set; }
         public int CreateUser { get; set; }
         public System.DateTime CreateTime { get; set; }
+        public int Status { get; set; }
     
         public virtual supplier supplier { get; set; }
+        public virtual admin admin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<yk> yk { get; set; }
     }
 }

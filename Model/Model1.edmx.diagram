@@ -36,6 +36,14 @@
         <EntityTypeShape EntityType="warehouseModel.menu" Width="1.5" PointX="12.375" PointY="7.75" />
         <AssociationConnector Association="warehouseModel.FK_admin_department" />
         <AssociationConnector Association="warehouseModel.FK_Type_admin" />
+        <AssociationConnector Association="warehouseModel.FK_bs_admin" />
+        <AssociationConnector Association="warehouseModel.FK_bs_admin1" />
+        <AssociationConnector Association="warehouseModel.FK_ck_admin" />
+        <AssociationConnector Association="warehouseModel.FK_rk_admin" />
+        <AssociationConnector Association="warehouseModel.FK_th_admin" />
+        <AssociationConnector Association="warehouseModel.FK_yk_admin" />
+        <AssociationConnector Association="warehouseModel.FK_yk_admin1" />
+        <AssociationConnector Association="warehouseModel.FK_yk_rk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
 
 <div class="widget box light-grey">
     <div class="widget-title">
-        <h4><i class="icon-globe"></i>入库单管理</h4>
+        <h4><i class="icon-globe"></i>出库管理</h4>
         <div class="tools">
             <a href="javascript:;" class="collapse"></a>
             <a href="#widget-config" data-toggle="modal" class="config"></a>
@@ -121,9 +121,14 @@
                     , title: '用户数据表'
                     , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                     , where: {
-                        id: "0"
+                        id: "0",
+                        check:""
                     }
                     , cols: [[
+                        {
+                            type: 'checkbox',
+                            fixed: 'left'
+                        },
                         {
                             field: 'ckID',
                             title: '出库单号'
@@ -133,14 +138,14 @@
                             field: 'CkType',
                             title: '出库类型',
                             edit: 'text',
-                            templet: function (res) {
-                                console.log(res)
-                                return "<button>" + res.rkType + "</button>"
-                            }
+                            //templet: function (res) {
+                            //    console.log(res)
+                            //    return "<button>" + res.rkType + "</button>"
+                            //}
                         },
                         {
-                            field: 'Ckclient ',
-                            title: '客户编号',
+                            field: 'clientName',
+                            title: '客户姓名',
 
                             //edit: 'text',
                             //templet: function (res) {
@@ -161,12 +166,16 @@
 
                         },
                         {
-                            field: 'CreateUser',
+                            field: 'check1',
+                            title: '是否通过审核'
+                        },
+                        {
+                            field: 'UserName',
                             title: '制单人'
                         },
                         {
                             field: 'CreateTime',
-                            title: '当前时间',
+                            title: '操作时间',
 
                             //sort: true
                         },
@@ -199,7 +208,19 @@
                         }
                     });
                 })
+                $(".btn").on("click", function () {
+                    
+                    tableIns.reload({
+                        where: { //设定异步数据接口的额外参数，任意设
+                            check: $(this).val()
 
+                            //…
+                        }
+                        , page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                });
 
                 //头工具栏事件
                 table.on('toolbar(test)', function (obj) {
