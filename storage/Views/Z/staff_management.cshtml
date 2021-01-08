@@ -1,1 +1,280 @@
-﻿<h1 style="color:red">此页面为员工管理分部视图</h1>
+﻿@*<h1 style="color:red">此页面为员工管理分部视图</h1>*@
+
+
+<link href="~/Scripts/layui/css/layui.css" rel="stylesheet" type="text/css" />
+<link href="~/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+
+<table class="layui-hide" id="test" lay-filter="test" style=""></table>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>   
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/layui/layui.all.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            , url: '/Z/staff_management_a'
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                , layEvent: 'LAYTABLE_TIPS'
+                , icon: 'layui-icon-tips'
+            }]
+            , title: '用户数据表'
+            , page: true
+            , parseData: function (res) {
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": Function.length, //解析数据长度
+                    "data": res //解析数据列表
+                }
+            }
+            , cols: [[
+                { type: 'checkbox', fixed: 'left' }
+                , {
+                    field: 'ID ', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true, templet: function (res) {
+                        return '<em>' + res.ID + '</em>'
+                    } }
+                , {
+                    field: 'UserName ', title: '用户名', width: 120, edit: 'text', templet: function (res) {
+                        return '<em>' + res.UserName + '</em>'
+                    }}
+                , {
+                    field: 'Password ', title: '密码', width: 120, edit: 'text', templet: function (res) {
+                        return '<em>' + res.Password + '</em>'
+                    } }
+                , {
+                    field: 'zsName ', title: '真实姓名', width: 120, edit: 'text', templet: function (res) {
+                        return '<em>' + res.zsName + '</em>'
+                    }}
+                , {
+                    field: 'Email ', title: '邮箱', width: 150, edit: 'text', templet: function (res) {
+                        return '<em>' + res.Email + '</em>'
+                    }
+                }
+                , {
+                    field: 'Phone ', title: '手机号', width: 130, templet: function (res) {
+                        return '<em>' + res.Phone + '</em>'
+                    } }
+                , {
+                    field: 'Departmentname ', title: '部门', templet: function (res) {
+                        return '<em>' + res.Departmentname + '</em>'
+                    } }
+                , {
+                    field: 'CreateTime ', title: '创建时间', width: 180, templet: function (res) {
+                        return '<em>' + DateFormat(res.CreateTime) + '</em>'
+                    }}
+                , {
+                    field: 'Status ', title: '权限', width: 100, sort: true, templet: function (res) {
+                        return '<em>' + res.Status + '</em>'
+                    }
+                }
+                , {
+                    field: 'IsDelete ', title: '状态', width: 100, sort: true, templet: function (res) {
+                        return '<em>' + res.IsDelete + '</em>'
+                    }
+                }
+                , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150 }
+            ]]
+           
+            
+        });
+        function DateFormat(val) {
+            if (val != null) {
+                //取得时间戳部分 如：获取 /Date(1545299299910)/ 中的 1545299299910 部分
+                var date = new Date(parseInt(val.replace("/Date(", "").replace(")/", ""), 10));
+                //月份为0-11，所以+1，月份小于10时补个0
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var currentTime = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+                //格式化显示，形如：2018-12-20 17:48:19
+                return date.getFullYear() + "-" + month + "-" + currentDate + " " + currentTime + ":" + minutes + ":" + seconds;
+            }
+            return "";
+        }
+
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：' + data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event == 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    $.ajax({
+                        url: "/Z/staff_management_dele",
+                        type: "post",
+                        data: { "id": data.ID },
+                        dataType:"json",
+                       //contentType: "application/json",
+                        success: function (res) {
+                            if (res > 0) {
+                                obj.del();
+                            }
+                        }
+                    });
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                var a11 = "</";
+                layer.prompt({
+                    formType: 0,  //文本样式 加了content就没用了
+                    value: data.Email, //默认值
+                    formType: 2,//这里依然指定类型是多行文本框，但是在下面content中也可绑定多行文本框
+                    title: '修改',
+                    area: ['100px', '100px'],
+                    btnAlign: 'c',
+                    offset: '50px',
+                    content: `<form action="/" class="layui-form" method="post" style="margin-bottom:120px;">
+                                <div class="row" style="width:500px;"><div class="col-xs-6">
+                                <label for="exampleInputName2">用户名</label>
+                                <input type="text" class="form-control" id="UserName" value="`+ data.UserName +`">
+                              </div><div class="col-xs-6">
+                                <label for="exampleInputName2">密码</label>
+                                <input type="text" class="form-control" id="Password " value="`+ data.Password  +`">
+                              </div><div class="col-xs-6">
+                                <label for="exampleInputName2">真实姓名</label>
+                                <input type="text" class="form-control" id="zsName " value="`+ data.zsName  +`">
+                              </div><div class="col-xs-6">
+                                <label for="exampleInputName2">邮箱</label>
+                                <input type="text" class="form-control" id="Email " value="`+ data.Email  +`">
+                              </div><div class="col-xs-6">
+                                <label for="exampleInputName2">手机号</label>
+                                <input type="text" class="form-control" id="Phone " value="`+ data.Phone  +`">
+                              </div><div class="col-xs-6">
+                                 <label for="exampleInputName2">创建时间</label>
+                                 <input type="text" class="layui-input" id="CreateTime" placeholder="yyyy-MM-dd HH:mm:ss" value="`+ DateFormat(data.CreateTime) +`">
+                              </div><div class="col-xs-6">
+                                
+                                 <label for="exampleInputName2">部门</label>
+                                <select name="modules" lay-verify="required" lay-search="" style="z-index:999999;">
+                                 `+ inde(2, data.Departmentname)+`
+                                </select> 
+                              </div><div class="col-xs-6">
+                                <label for="exampleInputName2">权限</label>
+                                <select name="modules" lay-verify="required" lay-search="" style="z-index:999999;">
+                                 `+ inde(1, data.AdminStatus) +`
+                                </select> 
+                              </div></div></form>
+                                <script>
+                                layui.use('laydate', function () {
+                                       var laydate = layui.laydate;
+                                       laydate.render({
+                                         elem: '#CreateTime'
+                                        , type: 'datetime'
+                                        
+                                     });
+                                   });
+                                 layui.use('form', function () {
+                                    var form = layui.form;
+                                    form.render();
+                                });
+                                   `+ a11+ `script>
+                                `,
+                    yes: function (index, layero) {
+                        var value1 = $('#remark').val();//获取多行文本框的值
+                        alert('您刚才输入了:' + value1);
+
+                        //可执行确定按钮事件并把备注信息（即多行文本框值）存入需要的地方
+                        
+                    }
+                }, function (value, index) {
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+       
+    });
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        
+        laydate.render({
+            elem: '#CreateTime'
+            , type: 'datetime'
+        });
+    });
+    function inde(id,name) {
+        var cun;
+        if (id == 1) {
+            $.ajax({
+                url: "/Z/staff_management_a",
+                type: "post",
+                dataType: "json",
+                async: false,
+                success: function (res) {
+                    for (var i = 0; i < res.length; i++) {
+                        if (res[i].AdminStatus==name) {
+                            var la = "<option value=" + res[i].Status + ">" + res[i].AdminStatus + "</option>";
+                            cun = la + cun;
+                        } else {
+                            cun += "<option value=" + res[i].Status + ">" + res[i].AdminStatus + "</option>";
+                        }
+                    }
+                }
+            });
+        } else if (id == 2) {
+            $.ajax({
+                url: "/Z/staff_management_a",
+                type: "post",
+                dataType: "json",
+                async: false,
+                success: function (res) {
+                    for (var i = 0; i < res.length; i++) {
+                        if (res[i].Departmentname == name) {
+                            var la="<option value=" + res[i].Department + ">" + res[i].Departmentname + "</option>";
+                            cun = la + cun;
+                        } else {
+                            cun += "<option value=" + res[i].Department + ">" + res[i].Departmentname + "</option>";
+                        }
+                    }
+                }
+            });
+        }
+        return cun;   
+    }
+</script>
