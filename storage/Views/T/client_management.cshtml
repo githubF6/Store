@@ -29,8 +29,8 @@
             <div class="controls controls-cus">
                 <input type="hidden" id="txtReprtNum" name="txtReportNum" value="InOrderPrint" />
 
-                编号:&nbsp;&nbsp;<input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入客户编号" />&nbsp;&nbsp;
-                姓名:&nbsp;&nbsp;<input id="txtOrderName" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入客户姓名" />&nbsp;&nbsp;
+                编号:&nbsp;&nbsp;<input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入客户编号" style="height:31px;"/>&nbsp;&nbsp;
+                姓名:&nbsp;&nbsp;<input id="txtOrderName" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入客户姓名" style="height:31px;"/>&nbsp;&nbsp;
                 <a id="gritter-remove-all" class="btn btn-info" href="javascript:void(0)"><i class="icon-search"></i>&nbsp;搜索</a>
 
             </div>
@@ -100,7 +100,6 @@
             layui.use(['table', 'jquery'], function () {
                 var table = layui.table;
                 var $ = layui.jquery;
-
                 $("#btnHSearch").click(function () {
                     $("#a").toggle();
                 })
@@ -207,8 +206,25 @@
                 });
             });
 
+        function DateFormat(val) {
+            if (val != null) {
+                //取得时间戳部分 如：获取 /Date(1545299299910)/ 中的 1545299299910 部分
+                var date = new Date(parseInt(val.replace("/Date(", "").replace(")/", ""), 10));
+                //月份为0-11，所以+1，月份小于10时补个0
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var currentTime = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
 
+                //格式化显示，形如：2018-12-20 17:48:19
+                return date.getFullYear() + "-" + month + "-" + currentDate + " ";
+            }
 
+        }
+    
 
     </script>
+  
+        
 

@@ -21,7 +21,7 @@ namespace dao
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static IQueryable GetRuKu(int pageIndex, int pageSize,int? id,string check) 
+        public static PageList GetRuKu(int pageIndex, int pageSize,int? id,string check) 
         {
            
             warehouseEntities entities = new warehouseEntities();
@@ -59,8 +59,9 @@ namespace dao
             else if (id==0&&check=="") {
                 
             }
-            
-            return obj=obj.OrderBy(p=>p.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize) ;
+            list.DataList = obj.OrderBy(p => p.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
+            return list ;
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace dao
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static IQueryable GetChuKu(int pageIndex, int pageSize,int? id,string check)
+        public static PageList GetChuKu(int pageIndex, int pageSize,int? id,string check)
         {
             warehouseEntities entities = new warehouseEntities();
             PageList list = new PageList();
@@ -98,7 +99,9 @@ namespace dao
             } else if (check!=""&&check!=null) {
                 obj = obj.Where(p => p.check1 == check);
             }
-            return obj = obj.OrderBy(p => p.ckID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.DataList = obj = obj.OrderBy(p => p.ckID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
+            return list;
         }
         /// <summary>
         /// 报损管理
@@ -106,7 +109,7 @@ namespace dao
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static IQueryable GetBaoSun(int pageIndex, int pageSize, int? id,string check)
+        public static PageList GetBaoSun(int pageIndex, int pageSize, int? id,string check)
         {
             warehouseEntities entities = new warehouseEntities();
             PageList list = new PageList();
@@ -133,7 +136,9 @@ namespace dao
             else if (check != "" && check != null) {
                 obj = obj.Where(p=>p.check1==check);
             }
-            return obj = obj.OrderBy(p => p.bsID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.DataList= obj.OrderBy(p => p.bsID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
+            return list;
         }
 
         /// <summary>
@@ -158,7 +163,8 @@ namespace dao
 
             return obj;
         }
-        public static IQueryable Queryyk(int pageIndex, int pageSize, int? id, string check) {
+        public static PageList Queryyk(int pageIndex, int pageSize, int? id, string check) {
+            PageList list = new PageList();
             warehouseEntities entities = new warehouseEntities();
             var obj =
                 from y in entities.yk
@@ -183,9 +189,13 @@ namespace dao
             {
                 obj = obj.Where(p => p.check1 == check);
             }
-            return obj = obj.OrderBy(p => p.ykID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.DataList  = obj.OrderBy(p => p.ykID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
+
+            return list;
         }
-        public static IQueryable Queryth(int pageIndex, int pageSize, int? id, string check) {
+        public static PageList Queryth(int pageIndex, int pageSize, int? id, string check) {
+            PageList list = new PageList();
             warehouseEntities entities = new warehouseEntities();
             var obj =
                 from t in entities.th
@@ -209,7 +219,10 @@ namespace dao
             {
                 obj = obj.Where(p => p.check1 == check);
             }
-            return obj = obj.OrderBy(p => p.thID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.DataList= obj.OrderBy(p => p.thID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
+
+            return list;
         }
     }
 }

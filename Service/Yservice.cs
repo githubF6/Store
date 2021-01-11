@@ -14,26 +14,20 @@ namespace Service
     
         public static PageList GetRuKu(int page,int limit,int id,string check) 
         {
-            PageList list = new PageList();
-            list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.GetRuKu(page,limit,id,check);
-            return list;
+
+            return dao.Ydao.GetRuKu(page, limit, id, check);
         }
 
         public static PageList GetChuKu(int page, int limi,int id,string check) 
         {
-            PageList list = new PageList();
-            list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.GetChuKu(page, limi,id,check);
-            return list;
+            
+            return dao.Ydao.GetChuKu(page, limi, id, check);
         }
 
         public static PageList GetBaoSun(int page, int limi, int id,string check)
         {
-            PageList list = new PageList();
-            list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.GetBaoSun(page, limi,id,check);
-            return list;
+            
+            return dao.Ydao.GetBaoSun(page, limi, id, check);
         }
 
         public static IQueryable RuDanHao(int id) 
@@ -41,17 +35,13 @@ namespace Service
             return dao.Ydao.RuDanHao(id);
         }
         public static PageList Queryyk(int page, int limi, int id, string check) {
-            PageList list = new PageList();
-            list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.Queryyk(page, limi, id, check);
-            return list;
+            
+            return dao.Ydao.Queryyk(page, limi, id, check);
         }
         public static PageList Queryth(int page, int limi, int id, string check)
         {
-            PageList list = new PageList();
-            list.PageCount = dao.Ydao.Count();
-            list.DataList = dao.Ydao.Queryth(page, limi, id, check);
-            return list;
+         
+            return dao.Ydao.Queryth(page, limi, id, check);
         }
     }
 }

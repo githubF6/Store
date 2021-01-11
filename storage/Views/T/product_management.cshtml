@@ -29,9 +29,12 @@
         <div class="control-group">
             <div class="controls controls-cus">
                 <input type="hidden" id="txtReprtNum" name="txtReportNum" value="InOrderPrint" />
-                序号:&nbsp;&nbsp;<input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入产品编号" />&nbsp;&nbsp;
-                产品名:&nbsp;&nbsp;<input id="txtOrderName" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入产品名称" />&nbsp;&nbsp;
-                类别:&nbsp;&nbsp;<select><option>请选择类别</option></select>&nbsp;&nbsp;
+                序号:&nbsp;&nbsp;<input id="txtOrderNum" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入产品编号" style="height:31px;"/>&nbsp;&nbsp;
+                产品名:&nbsp;&nbsp;<input id="txtOrderName" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入产品名称" style="height:31px;"/>&nbsp;&nbsp;
+                类别:&nbsp;&nbsp;<select name="city" lay-verify="" style="height:32px;">
+    <option value="">请选择类别</option>
+
+</select>&nbsp;&nbsp;
                 <a id="gritter-remove-all" class="btn btn-info" href="javascript:void(0)"><i class="icon-search"></i>&nbsp;搜索</a>
 
             </div>
@@ -113,7 +116,8 @@
                     , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                     , where: {
                          ProductID:"0",
-                        ProductName:""
+                        ProductName: "",
+                        selectTypeName:"0"
                     }
                     , cols: [[
                         {
@@ -199,14 +203,18 @@
                 });
                 $("#gritter-remove-all").on("click", function () {
                     var ProductID = $("#txtOrderNum").val();
-                    alert(ProductID)
+                    var selectTypeName = $("[name='city']").val();
                     if (ProductID=="") {
                         ProductID = 0;
+                    }
+                    if (selectTypeName=="") {
+                        selectTypeName = 0;
                     }
                     tableIns.reload({
                         where: { //设定异步数据接口的额外参数，任意设
                             ProductID: ProductID,
-                            ProductName: $("#txtOrderName").val()
+                            ProductName: $("#txtOrderName").val(),
+                            selectTypeName: selectTypeName
                             //…
                         }
                         , page: {
@@ -238,7 +246,19 @@
                     };
                 });
             });
+        $.ajax("/G/querySelectType",{
+            type: "post",
+            dataType: "json",
+            data: {
 
+            }, success(res) {
+                for (var i = 0; i < res.length; i++) {
+                    $("[name='city']").append("<option value='" + res[i].TypeID + "'>" + res[i].TypeName+"</option>");
+                }
+            }, error(err) {
+
+            }
+        });
 
 
 

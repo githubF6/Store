@@ -28,9 +28,14 @@
         <div class="control-group">
             <div class="controls controls-cus">
                 <input type="hidden" id="txtReprtNum" name="txtReportNum" value="InOrderPrint" />
-                仓库:<select><option>请选择仓库</option></select>&nbsp;&nbsp;
-                类型:<select><option>请选择仓库类型</option></select>&nbsp;&nbsp;
-                库位名:&nbsp;&nbsp;<input id="txtOrderName" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入库位名" />&nbsp;&nbsp;
+                请选择仓库:<select name="city" lay-verify="" style="height:32px;">
+                    <option value="">请选择一个仓库</option>
+                </select>&nbsp;&nbsp;
+                请选择仓库类型:<select name="city" lay-verify="" style="height:32px;">
+                    <option value="">请选择一个仓库类型</option>
+
+                </select>  &nbsp;&nbsp;
+                库位名:&nbsp;&nbsp;<input id="txtOrderName" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入库位名" style="height:32px" />&nbsp;&nbsp;
                 <a id="gritter-remove-all" class="btn btn-info" href="javascript:void(0)"><i class="icon-search"></i>&nbsp;搜索</a>
 
             </div>
@@ -97,135 +102,157 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
     <script>
 
-            layui.use(['table', 'jquery'], function () {
-                var table = layui.table;
-                var $ = layui.jquery;
+        layui.use(['table', 'jquery'], function () {
+            var table = layui.table;
+            var $ = layui.jquery;
 
-                $("#btnHSearch").click(function () {
-                    $("#a").toggle();
-                })
+            $("#btnHSearch").click(function () {
+                $("#a").toggle();
+            })
 
-                var tableIns = table.render({
-                    elem: '#test'
-                    , url: '/G/QueryDtable'
-                    , title: '用户数据表'
-                    , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-                    , where: {
-                        KwName:""
+            var tableIns = table.render({
+                elem: '#test'
+                , url: '/G/QueryDtable'
+                , title: '用户数据表'
+                , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                , where: {
+                    KwName: ""
+                }
+                , cols: [[
+                    {
+                        type: 'checkbox',
+                        fixed: 'left'
+                    },
+                    {
+                        field: 'ID',
+                        title: '序号',
+                        fixed: 'left'
+                    },
+                    {
+                        field: 'kwName',
+                        title: '库位名',
+                        edit: 'text',
+                        //templet: function (res) {
+                        //    console.log(res)
+                        //    return "<button>" + res.rkType + "</button>"
+                        //}
+                    },
+                    {
+                        field: 'CkName',
+                        title: '所在仓库',
+                        edit: 'text',
+                        //templet: function (res) {
+                        //    console.log(res)
+                        //    return "<button>" + res.rkType + "</button>"
+                        //}
+                    },
+                    {
+                        field: 'KwTypeName',
+                        title: '库位类型',
+                        edit: 'text',
+                        //templet: function (res) {
+                        //    console.log(res)
+                        //    return "<button>" + res.rkType + "</button>"
+                        //}
+                    },
+                    {
+                        field: 'Status',
+                        title: '是否禁用',
+                        edit: 'text',
+                        //templet: function (res) {
+                        //    console.log(res)
+                        //    return "<button>" + res.rkType + "</button>"
+                        //}
+                    },
+                    {
+                        field: 'CreateTime',
+                        title: '创建时间',
+                        edit: 'text',
+                        //templet: function (res) {
+                        //    console.log(res)
+                        //    return "<button>" + res.rkType + "</button>"
+                        //}
+                    },
+                    {
+                        fixed: 'right',
+                        title: '操作',
+
+                        width: 150
                     }
-                    , cols: [[
-                        {
-                            type: 'checkbox',
-                            fixed: 'left'
-                        },
-                        {
-                            field: 'ID',
-                            title: '序号',
-                            fixed: 'left'
-                        },
-                        {
-                            field: 'kwName',
-                            title: '库位名',
-                            edit: 'text',
-                            //templet: function (res) {
-                            //    console.log(res)
-                            //    return "<button>" + res.rkType + "</button>"
-                            //}
-                        },
-                        {
-                            field: 'CkName',
-                            title: '所在仓库',
-                            edit: 'text',
-                            //templet: function (res) {
-                            //    console.log(res)
-                            //    return "<button>" + res.rkType + "</button>"
-                            //}
-                        },
-                        {
-                            field: 'KwTypeName',
-                            title: '库位类型',
-                            edit: 'text',
-                            //templet: function (res) {
-                            //    console.log(res)
-                            //    return "<button>" + res.rkType + "</button>"
-                            //}
-                        },
-                        {
-                            field: 'Status',
-                            title: '是否禁用',
-                            edit: 'text',
-                            //templet: function (res) {
-                            //    console.log(res)
-                            //    return "<button>" + res.rkType + "</button>"
-                            //}
-                        },
-                        {
-                            field: 'CreateTime',
-                            title: '创建时间',
-                            edit: 'text',
-                            //templet: function (res) {
-                            //    console.log(res)
-                            //    return "<button>" + res.rkType + "</button>"
-                            //}
-                        },
-                        {
-                            fixed: 'right',
-                            title: '操作',
-
-                            width: 150
-                        }
-                    ]]
-                    , page: true,
-                    parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
-                        console.log(res)
-                        return {
-                            "code": "0", //解析接口状态
-                            "msg": "", //解析提示文本
-                            "count": res.PageCount, //解析数据长度
-                            "data": res.DataList //解析数据列表
-                        };
-                    }
-                });
-                $("#gritter-remove-all").on("click", function () {
-                    var typeId = $("#txtOrderNum").val();
-                    if (typeId == "") {
-                        typeId = 0;
-                    }
-                    tableIns.reload({
-                        where: { //设定异步数据接口的额外参数，任意设
-                            KwName: $("#txtOrderName").val()
-                            //…
-                        }
-                        , page: {
-                            curr: 1 //重新从第 1 页开始
-                        }
-                    });
-                });
-
-                //头工具栏事件
-                table.on('toolbar(test)', function (obj) {
-                    var checkStatus = table.checkStatus(obj.config.id);
-                    switch (obj.event) {
-                        case 'getCheckData':
-                            var data = checkStatus.data;
-                            layer.alert(JSON.stringify(data));
-                            break;
-                        case 'getCheckLength':
-                            var data = checkStatus.data;
-                            layer.msg('选中了：' + data.length + ' 个');
-                            break;
-                        case 'isAll':
-                            layer.msg(checkStatus.isAll ? '全选' : '未全选');
-                            break;
-
-                        //自定义头工具栏右侧图标 - 提示
-                        case 'LAYTABLE_TIPS':
-                            layer.alert('这是工具栏右侧自定义的一个图标按钮');
-                            break;
+                ]]
+                , page: true,
+                parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                    console.log(res)
+                    return {
+                        "code": "0", //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.PageCount, //解析数据长度
+                        "data": res.DataList //解析数据列表
                     };
+                }
+            });
+            $("#gritter-remove-all").on("click", function () {
+                var typeId = $("#txtOrderNum").val();
+                if (typeId == "") {
+                    typeId = 0;
+                }
+                tableIns.reload({
+                    where: { //设定异步数据接口的额外参数，任意设
+                        KwName: $("#txtOrderName").val()
+                        //…
+                    }
+                    , page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
                 });
             });
 
+            //头工具栏事件
+            table.on('toolbar(test)', function (obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'getCheckData':
+                        var data = checkStatus.data;
+                        layer.alert(JSON.stringify(data));
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：' + data.length + ' 个');
+                        break;
+                    case 'isAll':
+                        layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                        break;
+
+                    //自定义头工具栏右侧图标 - 提示
+                    case 'LAYTABLE_TIPS':
+                        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                        break;
+                };
+            });
+        });
+        $.ajax("/G/queryCkNameAndKwTypeName", {
+            type: "post",
+            dataType: "json",
+            data: {
+
+            }, success(res) {
+                console.log(res);
+                for (var i = 0; i < res[0].obj.length; i++) {
+                    $(".controls>select:eq(0)").append("<option value='" + res[0].obj[i].CkID + "'>" + res[0].obj[i].CkName+"</option>");
+                }
+                for (var j = 0; j < res.length;j++) {
+                    $(".controls>select:eq(1)").append("<option value='" + res[j].KwTypeID + "'>" + res[j].KwTypeName + "</option>");
+                }
+                //for (var i = 0; i < res.length; i++) {
+                //    $("body>select:eq(0)").append("<option value='" + res[i].KwTypeID + "'>" + res[i].KwTypeName + "</option>");
+                //}
+                //for (var i = 0; i < res.obj.length; i++) {
+                //    $("body>select:eq(1)").append("<option value='" + res.obj[i].CkID + "'>" + res.obj[i].CkName + "</option>");
+                //}
+            }, error(err) {
+
+            }
+        });
 
 
 

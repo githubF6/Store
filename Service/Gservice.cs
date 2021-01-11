@@ -17,44 +17,39 @@ namespace Service
         }
         public static PageList queryUnit(int page, int limit, int measureID, string measureName)
         {
-            PageList list = new PageList();
-            list.PageCount = Gdao.count();
-            list.DataList = Gdao.QueryUnit(page, limit,measureID,measureName);
-            return list;
+
+            return Gdao.QueryUnit(page,limit,measureID,measureName); ;
         }
         public static PageList QueryType(int pageIndex, int pageSize, int typeId, string typeName)
         {
-            PageList page = new PageList();
-            page.PageCount = Gdao.count();
-            page.DataList = Gdao.QueryType(pageIndex,pageSize,typeId,typeName);
-            return page;
+            return Gdao.QueryType(pageIndex,pageSize,typeId,typeName);
         }
-        public static PageList Queryproduct(int page, int limit, int ProductID, string ProductName) {
-            PageList list = new PageList();
-            list.PageCount = Gdao.count();
-            list.DataList = Gdao.Queryproduct(page, limit,ProductID,  ProductName);
-            return list;
+            public static PageList Queryproduct(int page, int limit, int ProductID, string ProductName, int selectTypeName) {
+            
+            
+            
+            return Gdao.Queryproduct(page,limit,ProductID,ProductName,selectTypeName);
         }
         public static PageList QueryDtable(int page, int limit, string KwName)
         {
-            PageList list = new PageList();
-            list.PageCount = Gdao.count();
-            list.DataList = Gdao.QueryDtable(page, limit,KwName);
-            return list;
+
+            return Gdao.QueryDtable(page, limit,KwName);
         }
         public static PageList Queryclient(int page, int limit, int clientID, string clientName)
         {
-            PageList list = new PageList();
-            list.PageCount = Gdao.count();
-            list.DataList = Gdao.Queryclient(page, limit,clientID,clientName);
-            return list;
+            return Gdao.Queryclient(page, limit,clientID,clientName);
         }
         public static PageList Querysupplier(int page, int limit, int supplierID, string supplierName, string supplierType)
         {
-            PageList list = new PageList();
-            list.PageCount = Gdao.count();
-            list.DataList = Gdao.Querysupplier(page, limit,supplierID,supplierName,supplierType);
-            return list;
+            return Gdao.Querysupplier(page, limit,supplierID,supplierName,supplierType);
         }
-    }
+        public static IQueryable querySelectType() {
+
+            return Gdao.querySelectType();
+        }
+        public static IQueryable queryCkNameAndKwTypeName()
+        {
+            return Gdao.queryCkNameAndKwTypeName();
+        }
+        }
 }

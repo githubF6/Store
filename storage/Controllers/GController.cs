@@ -85,8 +85,8 @@ namespace storage.Controllers
 
             return Json(Gservice.QueryType(page, limit, typeId, typeName), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Queryproduct(int page, int limit, int ProductID, string ProductName) {
-            return Json(Gservice.Queryproduct(page,limit,ProductID,ProductName),JsonRequestBehavior.AllowGet);
+        public ActionResult Queryproduct(int page, int limit, int ProductID, string ProductName, int selectTypeName) {
+            return Json(Gservice.Queryproduct(page,limit,ProductID,ProductName,selectTypeName),JsonRequestBehavior.AllowGet);
         }
         public ActionResult QueryDtable(int page, int limit, string KwName)
         {
@@ -100,7 +100,15 @@ namespace storage.Controllers
         {
             return Json(Gservice.Querysupplier(page, limit,supplierID,supplierName,supplierType), JsonRequestBehavior.AllowGet);
         }
-        
+        public ActionResult querySelectType() {
+
+            return Json(Gservice.querySelectType(),JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult queryCkNameAndKwTypeName() {
+            return Json(Gservice.queryCkNameAndKwTypeName(),JsonRequestBehavior.AllowGet);
+        }
+
+
 
     }
 }

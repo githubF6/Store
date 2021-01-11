@@ -10,33 +10,35 @@ namespace dao
 {
     public class Gdao
     {
-       static warehouseEntities entity = new warehouseEntities();
+        static warehouseEntities entity = new warehouseEntities();
         public static int count() {
             return entity.measure.Count();
         }
-        public List<admin> Login(string username,string password) {
+        public List<admin> Login(string username, string password) {
 
             return entity.admin.Where(p => p.UserName == username && p.Password == password).ToList();
             //var obj = (
             //   from admin in entity.admin.Where(p => p.UserName == username && p.Password == password).Count()
             //    )
         }
-        public static IQueryable QueryUnit(int pageIndex, int pageSize,int measureID,string measureName)
+        public static PageList QueryUnit(int pageIndex, int pageSize, int measureID, string measureName)
         {
             PageList page = new PageList();
             var obj =
-                from u in entity.measure 
+                from u in entity.measure
                 select new
                 {
                     measureID = u.measureID,
                     measureName = u.measureName
                 };
-            if (measureID!=0||measureName!="") {
-                obj = obj.Where(p => p.measureID==measureID||p.measureName==measureName);
+            if (measureID != 0 || measureName != "") {
+                obj = obj.Where(p => p.measureID == measureID || p.measureName == measureName);
             }
-            return obj.OrderBy(p=>p.measureID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.DataList = obj.OrderBy(p => p.measureID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.PageCount = obj.Count();
+            return page;
         }
-        public static IQueryable QueryType(int pageIndex, int pageSize,int typeId,string typeName) {
+        public static PageList QueryType(int pageIndex, int pageSize, int typeId, string typeName) {
             PageList page = new PageList();
             var obj =
                 from t in entity.Type
@@ -49,14 +51,18 @@ namespace dao
                     UserName = t.admin.UserName,
                     CreateTime = t.CreateTime,
                     Remark = t.Remark
+
                 };
-            if (typeId!=0||typeName!="") {
+            if (typeId != 0 || typeName != "") {
                 obj = obj.Where(p => p.TypeID == typeId || p.TypeName == typeName);
             }
-            return obj.OrderBy(p=>p.TypeID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.DataList = obj.OrderBy(p => p.TypeID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.PageCount = obj.Count();
+            return page ;
         }
-        public static IQueryable Queryproduct(int pageIndex, int pageSize,int ProductID,string ProductName) {
+        public static PageList Queryproduct(int pageIndex, int pageSize, int ProductID, string ProductName, int selectTypeName) {
             PageList page = new PageList();
+            
             var obj =
                 from p in entity.product
                 from t in entity.Type
@@ -64,21 +70,24 @@ namespace dao
                 where p.ProductType == t.TypeID && p.ProductUnit == u.measureID
                 select new
                 {
-                    ProductID=p.ProductID,
-                    ProductName= p.ProductName,
-                    Productprice=p.Productprice,
-                    ProductSpercification= p.ProductSpercification,
-                    TypeName= p.Type.TypeName,
-                    measureName=p.measure.measureName,
-                    Remark= p.Remark
+                    ProductID = p.ProductID,
+                    ProductName = p.ProductName,
+                    Productprice = p.Productprice,
+                    ProductSpercification = p.ProductSpercification,
+                    TypeName = p.Type.TypeName,
+                    measureName = p.measure.measureName,
+                    Remark = p.Remark,
+                    TypeID = p.Type.TypeID
                 };
-            if (ProductID!=0||ProductName!="") {
-                obj = obj.Where(p=>p.ProductID==ProductID||p.ProductName==ProductName);
+            if (ProductID != 0 || ProductName != "" || selectTypeName != 0) {
+                obj = obj.Where(p => p.ProductID == ProductID || p.ProductName == ProductName || p.TypeID == selectTypeName);
             }
-            return obj.OrderBy(p => p.ProductID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.DataList = obj.OrderBy(p => p.ProductID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.PageCount = obj.Count();
+            return page;
 
         }
-        public static IQueryable QueryDtable(int pageIndex, int pageSize,string KwName) {
+        public static PageList QueryDtable(int pageIndex, int pageSize, string KwName) {
             PageList page = new PageList();
             var obj =
                 from d in entity.Dtable
@@ -95,48 +104,85 @@ namespace dao
                     Status = d.Status,
                     CreateTime = d.CreateTime
                 };
-            if (KwName!="") {
-                obj = obj.Where(p=>p.kwName==KwName);
+            if (KwName != "") {
+                obj = obj.Where(p => p.kwName == KwName);
             }
-            return obj.OrderBy(p => p.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.DataList = obj.OrderBy(p => p.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.PageCount = obj.Count();
+            return page;
         }
-        public static IQueryable Queryclient(int pageIndex, int pageSize,int clientID,string clientName) {
+        public static PageList Queryclient(int pageIndex, int pageSize, int clientID, string clientName) {
             PageList page = new PageList();
             var obj =
                 from c in entity.client
                 select new
                 {
-                    clientID= c.clientID,
-                    clientName= c.clientName,
-                    Phone=c.Phone,
-                    CreateTime= c.CreateTime,
+                    clientID = c.clientID,
+                    clientName = c.clientName,
+                    Phone = c.Phone,
+                    CreateTime = c.CreateTime,
 
                 };
-            if (clientID!=0|| clientName!="") {
-                obj = obj.Where(p=>p.clientID==clientID||p.clientName==clientName);
+            if (clientID != 0 || clientName != "") {
+                obj = obj.Where(p => p.clientID == clientID || p.clientName == clientName);
             }
-            return obj.OrderBy(p => p.clientID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.DataList = obj.OrderBy(p => p.clientID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.PageCount = obj.Count();
+            return page;
         }
-        public static IQueryable Querysupplier(int pageIndex, int pageSize,int supplierID,string supplierName, string supplierType) {
+        public static PageList Querysupplier(int pageIndex, int pageSize, int supplierID, string supplierName, string supplierType) {
             PageList page = new PageList();
             var obj =
                 from s in entity.supplier
                 select new
                 {
-                    supplierID= s.supplierID,
-                    supplierType=s.supplierType,
-                    supplierName= s.supplierName,
-                    Phone= s.Phone,
-                    Email=s.Email,
-                    supplier_contact=s.supplier_contact,
-                    Address= s.Address,
-                    Remark=s.Remark,
-                    
+                    supplierID = s.supplierID,
+                    supplierType = s.supplierType,
+                    supplierName = s.supplierName,
+                    Phone = s.Phone,
+                    Email = s.Email,
+                    supplier_contact = s.supplier_contact,
+                    Address = s.Address,
+                    Remark = s.Remark,
+
                 };
-            if (supplierID!=0||supplierName!=""||supplierType!="") {
-                obj = obj.Where(p =>p.supplierID==supplierID||p.supplierName==supplierName||p.supplierType==supplierType);
+            if (supplierID != 0 || supplierName != "" || supplierType != "") {
+                obj = obj.Where(p => p.supplierID == supplierID || p.supplierName == supplierName || p.supplierType == supplierType);
             }
-            return obj.OrderBy(p => p.supplierID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.DataList = obj.OrderBy(p => p.supplierID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            page.PageCount = obj.Count();
+            return page;
+        }
+        public static IQueryable querySelectType() {
+
+            var obj =
+                from t in entity.Type
+                select new
+                {
+                    TypeID = t.TypeID,
+                    TypeName = t.TypeName,
+
+                };
+            return obj;
+        }
+        public static IQueryable queryCkNameAndKwTypeName() {
+
+            var obj =
+                   from ck in entity.store
+                   select new
+                   {
+                       CkID = ck.CkID,
+                       CkName = ck.CkName
+                   };
+            var obj1 =
+                from lx in entity.storageType
+                select new
+                {
+                    KwTypeID=lx.KwTypeID,
+                    KwTypeName = lx.KwTypeName,
+                    obj=obj
+                };
+            return obj1;
         }
     }
 }
