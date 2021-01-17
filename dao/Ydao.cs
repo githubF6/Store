@@ -163,6 +163,23 @@ namespace dao
 
             return obj;
         }
+        public static IQueryable yktype(string yklx)
+        {
+            warehouseEntities entities = new warehouseEntities();
+            var obj = from p in entities.yk
+                      where p.ykType == yklx
+                      select new
+                      {
+                          ykID = p.ykID,
+                          ykType = p.ykType,
+                          Count = p.Count,
+                          check1 = p.check1,
+                          CreateUser = p.CreateUser,
+                          CreateTime = p.CreateTime.ToString(),
+                      };
+
+            return obj;
+        }
         public static PageList Queryyk(int pageIndex, int pageSize, int? id, string check) {
             PageList list = new PageList();
             warehouseEntities entities = new warehouseEntities();
@@ -223,6 +240,31 @@ namespace dao
             list.PageCount = obj.Count();
 
             return list;
+        }
+        //添加移库表
+        public static int addyk(yk lo) {
+            warehouseEntities entities = new warehouseEntities();
+            entities.yk.Add(lo);
+            return entities.SaveChanges();
+        }
+        //添加退货
+        public static int addth(th hh) {
+            warehouseEntities entities = new warehouseEntities();
+            entities.th.Add(hh);
+            return entities.SaveChanges();
+        }
+        //修改移库
+        public static int Edit(yk s)
+        {
+            warehouseEntities entities = new warehouseEntities();
+            var obj = (from p in entities.yk where p.ykID == s.ykID select p).First();
+            obj.ykID = s.ykID;
+            obj.ykType = s.ykType;
+            obj.Count = s.Count;
+            obj.check1 = s.check1;
+            obj.CreateUser = s.CreateUser;
+            obj.CreateTime = s.CreateTime;
+            return entities.SaveChanges();
         }
     }
 }

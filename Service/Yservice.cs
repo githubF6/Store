@@ -43,5 +43,25 @@ namespace Service
          
             return dao.Ydao.Queryth(page, limi, id, check);
         }
+        //添加移库
+        public static int addyk(yk lo)
+        {
+            return dao.Ydao.addyk(lo);
+        }
+        //添加退货
+        public static int addth(th hh)
+        {
+            return dao.Ydao.addth(hh);
+        }
+        //移库类型查询
+        public static IQueryable yktype(string yklx)
+        {
+            return dao.Ydao.yktype(yklx);
+        }
+        //修改移库
+        public static int Edit(yk s)
+        {
+            return dao.Ydao.Edit(s);
+        }
     }
 }

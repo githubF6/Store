@@ -947,6 +947,7 @@
     <Content Include="Views\G\ck.cshtml" />
     <Content Include="Views\G\product_sum.cshtml" />
     <Content Include="Views\G\store_list.cshtml" />
+    <Content Include="Views\Y\getadd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

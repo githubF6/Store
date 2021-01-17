@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +20,6 @@ namespace dao
                 ID = aa.ID,
                 UserName = aa.UserName,
                 Password = aa.Password,
-                zsName = aa.zsName,
-                Email = aa.Email,
-                Phone = aa.Phone,
                 Department = aa.department,
                 Departmentname = aa.department1.departmentName,
                 AdminStatus=aa.AdminStatus.Name,
