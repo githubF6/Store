@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Service;
+using Model;
 
 namespace storage.Controllers
 {
@@ -71,6 +72,32 @@ namespace storage.Controllers
         {
             return Json(Yservice.Queryth(page, limit, id, check), JsonRequestBehavior.AllowGet);
         }
-
+        //添加移库
+        public ActionResult getadd(yk lo)
+        {
+            lo.Rkid = 4;
+            lo.Status = 0;
+            Debug.Write("创建用户:"+lo.CreateUser);
+            return Json(Yservice.addyk(lo), JsonRequestBehavior.AllowGet);
+        }
+        //添加退货
+        public ActionResult getaddth(th hh)
+        {
+            hh.ckid = 4;
+            hh.Status=0;
+            Debug.Write("创建用户:" + hh.CreateUser);
+            return Json(Yservice.addth(hh), JsonRequestBehavior.AllowGet);
+        }
+        //移库类型查询
+        public ActionResult selecttype(string yklx)
+        {
+            Debug.Write("yklx" + yklx);
+            return Json(Yservice.yktype(yklx), JsonRequestBehavior.AllowGet);
+        }
+        //修改移库
+        public ActionResult updateyk(yk s)
+        {
+            return Json(Yservice.Edit(s), JsonRequestBehavior.AllowGet);
+        }
     }
 }
