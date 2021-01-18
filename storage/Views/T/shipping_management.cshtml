@@ -29,10 +29,10 @@
             <div class="controls controls-cus">
                 <input type="hidden" id="txtReprtNum" name="txtReportNum" value="InOrderPrint" />
                 请选择仓库:<select name="city" lay-verify="" style="height:32px;">
-                    <option value="">请选择一个仓库</option>
+                          <option>请选择仓库</option>
                 </select>&nbsp;&nbsp;
                 请选择仓库类型:<select name="city" lay-verify="" style="height:32px;">
-                    <option value="">请选择一个仓库类型</option>
+                    <option value="">请选择仓库类型</option>
 
                 </select>  &nbsp;&nbsp;
                 库位名:&nbsp;&nbsp;<input id="txtOrderName" name="txtOrderNum" type="text" class="input-medium" placeholder="请输入库位名" style="height:32px" />&nbsp;&nbsp;
@@ -167,11 +167,13 @@
                     {
                         field: 'CreateTime',
                         title: '创建时间',
-                        edit: 'text',
-                        //templet: function (res) {
-                        //    console.log(res)
-                        //    return "<button>" + res.rkType + "</button>"
-                        //}
+                        
+                        templet: function (res) {
+
+                            console.log(res.CreateTime)
+                           
+                            return DateFormat(res.CreateTime);
+                        }
                     },
                     {
                         fixed: 'right',
@@ -236,7 +238,10 @@
             data: {
 
             }, success(res) {
-                console.log(res);
+                $(".controls>select:eq(0)").html("");
+                $(".controls>select:eq(0)").append("<option>请选择仓库</option>");
+                $(".controls>select:eq(1)").html("");
+                $(".controls>select:eq(1)").append("<option>请选择仓库类型</option>");
                 for (var i = 0; i < res[0].obj.length; i++) {
                     $(".controls>select:eq(0)").append("<option value='" + res[0].obj[i].CkID + "'>" + res[0].obj[i].CkName+"</option>");
                 }
@@ -253,7 +258,7 @@
 
             }
         });
-
+        
 
 
     </script>

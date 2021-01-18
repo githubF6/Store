@@ -140,11 +140,13 @@
                         {
                             field: 'CreateTime',
                             title: '创建时间',
-                            edit: 'text',
-                            //templet: function (res) {
-                            //    console.log(res)
-                            //    return "<button>" + res.rkType + "</button>"
-                            //}
+                            
+                            templet: function (res) {
+
+                                console.log(res.CreateTime)
+
+                                return DateFormat(res.CreateTime);
+                            }
                         },
                         {
                             fixed: 'right',

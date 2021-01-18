@@ -25,6 +25,7 @@ namespace Model
         public string Phone { get; set; }
         public System.DateTime CreateTime { get; set; }
         public int Status { get; set; }
+        public Nullable<int> count { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ck> ck { get; set; }

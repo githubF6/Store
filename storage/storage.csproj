@@ -549,6 +549,8 @@
     <Content Include="Scripts\bootstrap-3.3.7\js\tooltip.js" />
     <Content Include="Scripts\bootstrap-3.3.7\js\transition.js" />
     <Content Include="Scripts\bootstrap-3.3.7\package.js" />
+    <Content Include="Scripts\echarts-all.js" />
+    <Content Include="Scripts\echarts.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />

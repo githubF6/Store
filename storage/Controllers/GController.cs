@@ -107,7 +107,60 @@ namespace storage.Controllers
         public ActionResult queryCkNameAndKwTypeName() {
             return Json(Gservice.queryCkNameAndKwTypeName(),JsonRequestBehavior.AllowGet);
         }
+        public ActionResult queryInventory(int page, int limit, string kwName, string KwTypeName)
+        {
+            Debug.WriteLine("库位名:"+kwName);
+            Debug.WriteLine("库位类型:" + KwTypeName);
+            return Json(Gservice.queryInventory(page,limit,kwName,KwTypeName),JsonRequestBehavior.AllowGet);
 
+        }
+        public ActionResult queryTypeAndKwName() {
+
+            return Json(Gservice.queryTypeAndKwName(),JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult queryInventory_Report(int page, int limit,int Date)
+        {
+
+            return Json(Gservice.queryInventory_Report(page,limit,Date), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult query_queryInventory_ReportAll(int id) {
+            return Json(Gservice.query_queryInventory_ReportAll(id), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Outbound_Statements(int page, int limit,int Date)
+        {
+
+            return Json(Gservice.Outbound_Statements(page, limit,Date), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Outbound_StatementsAll(int id) {
+            return Json(Gservice.Outbound_StatementsAll(id), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Reported_loss_report(int page, int limit,int Date) {
+
+            return Json(Gservice.Reported_loss_report(page,limit,Date),JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Return_Statements(int page, int limit, int Date) {
+            
+            return Json(Gservice.Return_Statements(page, limit,Date), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Return_Statements1()
+        {
+            return Json(Gservice.Return_Statements1(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Reported_loss_report1() {
+            return Json(Gservice.Reported_loss_report1(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult queryCrk(int page, int limit,int Date) {
+            return Json(Gservice.queryCrk(page,limit,Date), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult queryCrk1() {
+            return Json(Gservice.queryCrk1(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult queryProduct_sum(int page, int limit,int Date) {
+            return Json(Gservice.queryProduct_sum(page, limit,Date), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult queryProduct_sum1() {
+            return Json(Gservice.queryProduct_sum1(), JsonRequestBehavior.AllowGet);
+        }
 
 
     }

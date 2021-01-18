@@ -1,4 +1,325 @@
 ﻿
-<h1 style="color:red">此页面为入库报表分部视图</h1>
 
-    
+<link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+
+<div class="widget box light-grey">
+    <div class="widget-title">
+        <h4><i class="icon-globe"></i>入库报表</h4>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="#widget-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="widget-body">
+        <div class="clearfix margin-bottom-10">
+            <div class="btn-group" id="btnStatusGroup">
+                <button class="btn" value="10">近10天</button>
+                <button class="btn" value="30" id="btn1">近30天</button>
+                <button class="btn" value="60">近60天</button>
+                <button class="btn" value="0">历史</button>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div style=" transition: 1s !important;display:none;" id="a">
+        <form class="layui-form" action="">
+            <fieldset class="layui-elem-field">
+                <legend>爱好</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">供应商</label>
+                            <div class="layui-input-inline">
+                                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">供应商</label>
+                            <div class="layui-input-inline">
+                                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+
+                            <select name="quiz2" style="display:block;">
+                                <option value="">请选择市</option>
+                                <option value="杭州">杭州</option>
+                                <option value="宁波" disabled="">宁波</option>
+                                <option value="温州">温州</option>
+                                <option value="温州">台州</option>
+                                <option value="温州">绍兴</option>
+                            </select>
+                        </div>
+                        <button type="button" class="layui-btn layui-btn-normal">百搭按钮</button>
+
+                    </div>
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <div id="motai" style="display:none;">
+        <table class="table">
+            <tr>
+                <td>
+                    &nbsp&nbsp&nbsp 入库单号:<input type="text" name="ID" readonly="readonly">
+                </td>
+                <td>&nbsp&nbsp&nbsp&nbsp入库类型:<input type="text" name="rkType" readonly="readonly"></td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp状态:<input type="text"name="check1" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>供应商编号:<input type="text" name="supplierID" readonly="readonly"></td>
+                <td>供应商名称:<input type="text" readonly="readonly" name="supplierName"></td>
+                <td>&nbsp&nbsp&nbsp&nbsp联系人:<input type="text" name="supplier_contact" readonly="readonly"></td>
+            </tr>
+            <tr>
+                
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp创建人:<input type="text" name="UserName" readonly="readonly"></td>
+                <td>&nbsp&nbsp&nbsp&nbsp创建时间:<input type="text" name="CreateTime" readonly="readonly"></td>
+                <td>电话号码:<input type="text" name="Phone" readonly="readonly"></td>
+            </tr>
+    </div>
+    </table>
+
+    @*<script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+                <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+            </div>
+        </script>*@
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/layui/layui.all.js"></script>
+
+    @*<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>*@
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script>
+
+        layui.use(['table', 'jquery'], function () {
+            var table = layui.table;
+            var $ = layui.jquery;
+
+            $("#btnHSearch").click(function () {
+                $("#a").toggle();
+            })
+
+            var tableIns = table.render({
+                elem: '#test'
+                , url: '/G/queryInventory_Report'
+                , title: '用户数据表'
+                , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                , where: {
+                    Date:"0"
+                }
+                , cols: [[
+
+                    {
+                        field: 'ID',
+                        title: '入库编号',
+                        fixed: 'left'
+                    },
+                    {
+                        field: 'CreateTime',
+                        title: '入库时间',
+                        templet: function (res) {
+
+                            console.log(res.CreateTime)
+
+                            return DateFormat(res.CreateTime);
+                        }
+                        //templet: function (res) {
+                        //    console.log(res)
+                        //    return "<button>" + res.rkType + "</button>"
+                        //}
+                    },
+                    {
+                        field: 'supplierName',
+                        title: '供应商名称',
+                        width: 150
+                        //edit: 'text',
+                        //templet: function (res) {
+                        //    console.log(res.ID)
+                        //    return '<em>' + res.email + '</em>'
+                        //}
+                    },
+                    {
+                        field: 'Sum',
+                        title: '总数量',
+                        width: 80,
+                        edit: 'text',
+                        // sort: true
+                    },
+                    {
+                        field: 'Asum',
+                        title: '总价',
+                        width: 80,
+                        edit: 'text',
+                        // sort: true
+                    },
+
+
+
+                    {
+                        fixed: 'right',
+                        title: '操作',
+                        width: 150,
+                        templet: function () {
+
+                            return "<button class='mingxi'>明细</button>"
+                        }
+
+                    }
+                ]]
+                , page: true,
+                parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                    console.log(res)
+                    return {
+                        "code": "0", //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.PageCount, //解析数据长度
+                        "data": res.DataList //解析数据列表
+                    };
+                }
+            });
+            $("#gritter-remove-all").click(function () {
+                tableIns.reload({
+                    where: { //设定异步数据接口的额外参数，任意设
+
+                        //…
+                    }
+                    , page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                });
+            });
+            $(".btn").on("click", function () {
+                tableIns.reload({
+                    where: { //设定异步数据接口的额外参数，任意设
+                        Date: $(this).val()
+
+                        //…
+                    }
+                    , page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                });
+            });
+
+            //头工具栏事件
+            //table.on('toolbar(test)', function (obj) {
+            //    var checkStatus = table.checkStatus(obj.config.id);
+            //    switch (obj.event) {
+            //        case 'getCheckData':
+            //            var data = checkStatus.data;
+            //            layer.alert(JSON.stringify(data));
+            //            break;
+            //        case 'getCheckLength':
+            //            var data = checkStatus.data;
+            //            layer.msg('选中了：' + data.length + ' 个');
+            //            break;
+            //        case 'isAll':
+            //            layer.msg(checkStatus.isAll ? '全选' : '未全选');
+            //            break;
+
+            //        //自定义头工具栏右侧图标 - 提示
+            //        case 'LAYTABLE_TIPS':
+            //            layer.alert('这是工具栏右侧自定义的一个图标按钮');
+            //            break;
+            //    };
+            //});
+
+
+            ////监听行工具事件
+            //table.on('tool(test)', function (obj) {
+            //    var data = obj.data;
+            //    //console.log(obj)
+            //    if (obj.event === 'del') {
+            //        layer.confirm('真的删除行么', function (index) {
+            //            obj.del();
+            //            layer.close(index);
+            //        });
+            //    } else if (obj.event === 'edit') {
+            //        layer.prompt({
+            //            formType: 2
+            //            , value: data.email
+            //        }, function (value, index) {
+            //            obj.update({
+            //                email: value
+            //            });
+            //            layer.close(index);
+            //        });
+            //    }
+            //});
+        });
+        $("body").on("click", ".mingxi", function () {
+            
+            $.ajax("/G/query_queryInventory_ReportAll",{
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: $(this).parent().parent().parent().children("td:eq(0)").text()
+                }, success(res) {
+                    var check1 = res[0].check1;
+                    if (check1 == "1") {
+                        check1 = "审核通过";
+                    } else if (check1 == "2") {
+                        check1 = "正在审核";
+                    } else if (check1 == "3") {
+                        check1 = "审核失败";
+                    }
+                    $("[name='ID']").val(res[0].ID);
+                    $("[name='rkType']").val(res[0].rkType);
+                    $("[name='check1']").val(check1);
+                    $("[name='supplierID']").val(res[0].supplierID);
+                    $("[name='supplierName']").val(res[0].supplierName);
+                    $("[name='supplier_contact']").val(res[0].supplier_contact);
+                    $("[name='UserName']").val(res[0].UserName);
+                    $("[name='CreateTime']").val(DateFormat(res[0].CreateTime));
+                    $("[name='Phone']").val(res[0].Phone);
+                }, error(err) {
+                    alert(err)
+                }
+            });
+            layer.open({
+                type: 1,//类型
+                zIndex: 1,
+                shade: 0.0,
+                area: ['900px', '700px'],//定义宽和高
+                title: '明细',//题目
+                shadeClose: true,//点击遮罩层关闭
+                content: $('#motai')//打开的内容
+            });
+        });
+        function DateFormat(val) {
+            if (val != null) {
+                //取得时间戳部分 如：获取 /Date(1545299299910)/ 中的 1545299299910 部分
+                var date = new Date(parseInt(val.replace("/Date(", "").replace(")/", ""), 10));
+                //月份为0-11，所以+1，月份小于10时补个0
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var currentTime = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+                //格式化显示，形如：2018-12-20 17:48:19
+                return date.getFullYear() + "-" + month + "-" + currentDate + " ";
+            }
+
+        }
+    </script>

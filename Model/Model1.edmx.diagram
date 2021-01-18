@@ -45,6 +45,9 @@
         <AssociationConnector Association="warehouseModel.FK_product_Type" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_rk_supplier" ManuallyRouted="false" />
         <AssociationConnector Association="warehouseModel.FK_yk_rk" ManuallyRouted="false" />
+        <AssociationConnector Association="warehouseModel.FK_product_storage1" />
+        <AssociationConnector Association="warehouseModel.FK_product_storageType" />
+        <AssociationConnector Association="warehouseModel.FK_th_product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -29,6 +29,8 @@ namespace Model
         public string Address { get; set; }
         public string Remark { get; set; }
         public int Status { get; set; }
+        public Nullable<int> count { get; set; }
+        public Nullable<System.DateTime> CreateTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rk> rk { get; set; }

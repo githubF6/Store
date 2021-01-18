@@ -61,6 +61,7 @@ namespace dao
             }
             list.DataList = obj.OrderBy(p => p.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             list.PageCount = obj.Count();
+        
             return list ;
         }
 
@@ -149,7 +150,8 @@ namespace dao
         public static IQueryable RuDanHao(int id) 
         {
             warehouseEntities entities = new warehouseEntities();
-            var obj = from p in entities.rk where p.ID == id select new 
+            var obj = from p in entities.rk where p.ID == id &&p.Status==0
+                      select new 
             {
                 ID = p.ID,
                 rkType = p.rkType,
@@ -170,7 +172,7 @@ namespace dao
                 from y in entities.yk
                 from r in entities.rk
                 from a in entities.admin
-                where y.Rkid == r.ID && y.CreateUser == a.ID
+                where y.Rkid == r.ID && y.CreateUser == a.ID &&y.Status==0
                 select new
                 {
                     ykID=y.ykID,
@@ -201,7 +203,7 @@ namespace dao
                 from t in entities.th
                 from c in entities.ck
                 from a in entities.admin
-                where t.ckid == c.ckID && c.CreateUser == a.ID
+                where t.ckid == c.ckID && c.CreateUser == a.ID &&t.Status==0
                 select new
                 {
                     thID=t.thID,

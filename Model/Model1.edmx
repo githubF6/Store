@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="warehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="warehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -64,6 +64,7 @@
           <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateTime" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="count" Type="int" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -119,12 +120,14 @@
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KwID" Type="int" Nullable="false" />
+          <Property Name="KwTypeId" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Productprice" Type="float" Nullable="false" />
           <Property Name="ProductSpercification" Type="varchar" MaxLength="50" />
           <Property Name="ProductType" Type="int" Nullable="false" />
           <Property Name="ProductUnit" Type="int" Nullable="false" />
-          <Property Name="Remark" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="rk">
@@ -175,6 +178,8 @@
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="count" Type="int" />
+          <Property Name="CreateTime" Type="date" />
         </EntityType>
         <EntityType Name="th">
           <Key>
@@ -345,6 +350,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_product_storage1">
+          <End Role="storage1" Type="Self.storage1" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storage1">
+              <PropertyRef Name="KwID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="KwID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_storageType">
+          <End Role="storageType" Type="Self.storageType" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storageType">
+              <PropertyRef Name="KwTypeID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="KwTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_product_Type">
           <End Role="Type" Type="Self.Type" Multiplicity="1" />
           <End Role="product" Type="Self.product" Multiplicity="*" />
@@ -393,24 +422,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_th_ck">
-          <End Role="ck" Type="Self.ck" Multiplicity="1" />
+        <Association Name="FK_th_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
           <End Role="th" Type="Self.th" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ck">
-              <PropertyRef Name="ckID" />
-            </Principal>
-            <Dependent Role="th">
-              <PropertyRef Name="ckid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_th_ck1">
-          <End Role="ck" Type="Self.ck" Multiplicity="1" />
-          <End Role="th" Type="Self.th" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ck">
-              <PropertyRef Name="ckID" />
+            <Principal Role="product">
+              <PropertyRef Name="ProductID" />
             </Principal>
             <Dependent Role="th">
               <PropertyRef Name="ckid" />
@@ -529,6 +546,14 @@
             <End Role="measure" EntitySet="measure" />
             <End Role="product" EntitySet="product" />
           </AssociationSet>
+          <AssociationSet Name="FK_product_storage1" Association="Self.FK_product_storage1">
+            <End Role="storage1" EntitySet="storage1" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_storageType" Association="Self.FK_product_storageType">
+            <End Role="storageType" EntitySet="storageType" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
           <AssociationSet Name="FK_product_Type" Association="Self.FK_product_Type">
             <End Role="Type" EntitySet="Type" />
             <End Role="product" EntitySet="product" />
@@ -545,12 +570,8 @@
             <End Role="admin" EntitySet="admin" />
             <End Role="th" EntitySet="th" />
           </AssociationSet>
-          <AssociationSet Name="FK_th_ck" Association="Self.FK_th_ck">
-            <End Role="ck" EntitySet="ck" />
-            <End Role="th" EntitySet="th" />
-          </AssociationSet>
-          <AssociationSet Name="FK_th_ck1" Association="Self.FK_th_ck1">
-            <End Role="ck" EntitySet="ck" />
+          <AssociationSet Name="FK_th_product" Association="Self.FK_th_product">
+            <End Role="product" EntitySet="product" />
             <End Role="th" EntitySet="th" />
           </AssociationSet>
           <AssociationSet Name="FK_Type_admin" Association="Self.FK_Type_admin">
@@ -570,8 +591,7 @@
             <End Role="yk" EntitySet="yk" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="warehouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -653,6 +673,7 @@
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ck" Relationship="Self.FK_ck_client" FromRole="client" ToRole="ck" />
+          <Property Name="count" Type="Int32" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -718,11 +739,16 @@
           <Property Name="ProductSpercification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProductType" Type="Int32" Nullable="false" />
           <Property Name="ProductUnit" Type="Int32" Nullable="false" />
-          <Property Name="Remark" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="bs" Relationship="Self.FK_bs_product" FromRole="product" ToRole="bs" />
           <NavigationProperty Name="measure" Relationship="Self.FK_product_measure" FromRole="product" ToRole="measure" />
           <NavigationProperty Name="Type" Relationship="Self.FK_product_Type" FromRole="product" ToRole="Type" />
+          <Property Name="KwID" Type="Int32" Nullable="false" />
+          <Property Name="KwTypeId" Type="Int32" Nullable="false" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="storage1" Relationship="warehouseModel.FK_product_storage1" FromRole="product" ToRole="storage1" />
+          <NavigationProperty Name="storageType" Relationship="warehouseModel.FK_product_storageType" FromRole="product" ToRole="storageType" />
+          <NavigationProperty Name="th" Relationship="warehouseModel.FK_th_product" FromRole="product" ToRole="th" />
         </EntityType>
         <EntityType Name="rk">
           <Key>
@@ -748,6 +774,7 @@
           <Property Name="KwID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="kwName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Dtable" Relationship="Self.FK_Dtable_storage1" FromRole="storage1" ToRole="Dtable" />
+          <NavigationProperty Name="product" Relationship="warehouseModel.FK_product_storage1" FromRole="storage1" ToRole="product" />
         </EntityType>
         <EntityType Name="storageType">
           <Key>
@@ -756,6 +783,7 @@
           <Property Name="KwTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KwTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Dtable" Relationship="Self.FK_Dtable_storageType" FromRole="storageType" ToRole="Dtable" />
+          <NavigationProperty Name="product" Relationship="warehouseModel.FK_product_storageType" FromRole="storageType" ToRole="product" />
         </EntityType>
         <EntityType Name="store">
           <Key>
@@ -779,6 +807,8 @@
           <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="rk" Relationship="Self.FK_rk_supplier" FromRole="supplier" ToRole="rk" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="th">
           <Key>
@@ -795,6 +825,7 @@
           <NavigationProperty Name="admin" Relationship="Self.FK_th_admin" FromRole="th" ToRole="admin" />
           <NavigationProperty Name="ck" Relationship="Self.FK_th_ck" FromRole="th" ToRole="ck" />
           <NavigationProperty Name="ck1" Relationship="Self.FK_th_ck1" FromRole="th" ToRole="ck" />
+          <NavigationProperty Name="product" Relationship="warehouseModel.FK_th_product" FromRole="th" ToRole="product" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -1181,7 +1212,55 @@
             <End Role="rk" EntitySet="rk" />
             <End Role="yk" EntitySet="yk" />
           </AssociationSet>
+          <AssociationSet Name="FK_product_storage1" Association="warehouseModel.FK_product_storage1">
+            <End Role="storage1" EntitySet="storage1" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_storageType" Association="warehouseModel.FK_product_storageType">
+            <End Role="storageType" EntitySet="storageType" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_th_product" Association="warehouseModel.FK_th_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="th" EntitySet="th" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_product_storage1">
+          <End Type="warehouseModel.storage1" Role="storage1" Multiplicity="1" />
+          <End Type="warehouseModel.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storage1">
+              <PropertyRef Name="KwID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="KwID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_storageType">
+          <End Type="warehouseModel.storageType" Role="storageType" Multiplicity="1" />
+          <End Type="warehouseModel.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storageType">
+              <PropertyRef Name="KwTypeID" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="KwTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_th_product">
+          <End Type="warehouseModel.product" Role="product" Multiplicity="1" />
+          <End Type="warehouseModel.th" Role="th" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="th">
+              <PropertyRef Name="ckid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1245,6 +1324,7 @@
           <EntitySetMapping Name="client">
             <EntityTypeMapping TypeName="warehouseModel.client">
               <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="count" ColumnName="count" />
                 <ScalarProperty Name="clientID" ColumnName="clientID" />
                 <ScalarProperty Name="clientName" ColumnName="clientName" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -1310,13 +1390,15 @@
           <EntitySetMapping Name="product">
             <EntityTypeMapping TypeName="warehouseModel.product">
               <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="KwTypeId" ColumnName="KwTypeId" />
+                <ScalarProperty Name="KwID" ColumnName="KwID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="Productprice" ColumnName="Productprice" />
                 <ScalarProperty Name="ProductSpercification" ColumnName="ProductSpercification" />
                 <ScalarProperty Name="ProductType" ColumnName="ProductType" />
                 <ScalarProperty Name="ProductUnit" ColumnName="ProductUnit" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1363,6 +1445,8 @@
           <EntitySetMapping Name="supplier">
             <EntityTypeMapping TypeName="warehouseModel.supplier">
               <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="count" ColumnName="count" />
                 <ScalarProperty Name="supplierID" ColumnName="supplierID" />
                 <ScalarProperty Name="supplierType" ColumnName="supplierType" />
                 <ScalarProperty Name="supplierName" ColumnName="supplierName" />

@@ -26,5 +26,6 @@ namespace Model
         public virtual admin admin { get; set; }
         public virtual ck ck { get; set; }
         public virtual ck ck1 { get; set; }
+        public virtual product product { get; set; }
     }
 }

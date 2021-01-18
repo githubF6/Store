@@ -18,6 +18,7 @@ namespace Model
         public storageType()
         {
             this.Dtable = new HashSet<Dtable>();
+            this.product = new HashSet<product>();
         }
     
         public int KwTypeID { get; set; }
@@ -25,5 +26,7 @@ namespace Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dtable> Dtable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<product> product { get; set; }
     }
 }
